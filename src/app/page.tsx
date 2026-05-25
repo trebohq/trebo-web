@@ -17,21 +17,20 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* We are keeping this one out for now */}
-      {/* <Story />
-      <AIVision /> */}
-
+       {/* <Story /> */}
       <Navbar />
       <Hero />
+      <DashboardPreview />
       <SocialProof />
       <Problem />
       <Solution />
-      <DashboardPreview />
       <HowItWorks />
       <Pricing />
       <Testimonials />
       <FAQ />
       <FinalCTA />
       <Footer />
+      {/*<AIVision /> */}
     </main>
   );
 }

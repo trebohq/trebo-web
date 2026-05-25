@@ -14,25 +14,17 @@ export default function Hero() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6 text-center">
-      
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-5xl md:text-8xl font-bold tracking-tight text-foreground mb-8 max-w-5xl mx-auto leading-[0.95]"
         >
-          You post. People view. <br />
-          <span className="text-primary italic">But nobody buys.</span>
+          Your Buisness, <br />
+          <span className="text-primary italic">Needs.</span>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl md:text-2xl text-foreground/70 max-w-3xl mx-auto mb-12 leading-relaxed font-medium"
-        >
-          Your IG page is fine. Your TikTok gets views. But your WhatsApp is still quiet. Trebo helps you look professional, get found on Google, and turn attention into real sales.
-        </motion.p>
+      
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,7 +37,11 @@ export default function Hero() {
             className="w-full sm:w-auto bg-primary text-white px-10 py-5 rounded-xl text-xl font-bold hover:bg-primary-dark transition-all flex items-center justify-center gap-2 group shadow-xl shadow-primary/20"
           >
             Start your page
-            <ArrowRight size={20} weight="bold" className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight
+              size={20}
+              weight="bold"
+              className="group-hover:translate-x-1 transition-transform"
+            />
           </Link>
           <Link
             href="#how-it-works"
@@ -53,25 +49,6 @@ export default function Hero() {
           >
             How it works
           </Link>
-        </motion.div>
-
-        {/* Social Proof Mini */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mt-20 flex flex-col items-center gap-6"
-        >
-          <div className="flex -space-x-4">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="w-12 h-12 rounded-full border-4 border-background bg-surface overflow-hidden">
-                <div className={`w-full h-full bg-primary/${i * 10 + 10}`} />
-              </div>
-            ))}
-          </div>
-          <p className="text-foreground/50 font-medium italic">
-            &quot;Finally, people stop asking for price in the DM.&quot; — Ada, Lagos
-          </p>
         </motion.div>
       </div>
     </section>
