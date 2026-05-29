@@ -26,12 +26,12 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Left Content Column */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Early sign-up high contrast element */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ebe7e0] text-[#0a1a3b] border border-[#dedad3] w-fit mb-6 animate-pulse">
+            {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ebe7e0] text-[#0a1a3b] border border-[#dedad3] w-fit mb-6 animate-pulse">
               <span className="w-2 h-2 rounded-full bg-[#1b9cda]" />
               <span className="text-xs font-semibold uppercase tracking-wider">
                 120+ businesses across Nigeria already waiting
               </span>
-            </div>
+            </div> */}
 
             {/* H1 Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight lg:leading-[1.1] text-[#0a1a3b] mb-6">
