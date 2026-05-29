@@ -16,7 +16,7 @@ export const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, setMobileMenuOpe
       <div className="max-w-7xl mx-auto px-6 h-18 md:h-20 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
-          <Image src="/trebo-icon-sm.png" width={30} height={30} />
+          <Image src="/trebo-icon-sm.png" width={30} height={30} alt="trebo logo" />
           <span className="font-extrabold text-xl tracking-tight text-[#0a1a3b] select-none">
             trebo
           </span>
