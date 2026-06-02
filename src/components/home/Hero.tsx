@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Play, ShieldCheck, MessageCircle } from "lucide-react";
+import Image from "next/image";
 import { Product } from "./types";
 
 interface HeroProps {
@@ -42,7 +43,9 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Subtext (capped length as per guidelines) */}
             <p className="text-lg text-[#0a1a3b]/80 leading-relaxed max-w-[50ch] mb-8">
-              Sell online properly without the headache of chaotic instant messages. Show products, manage inventory, and receive structured requests directly on WhatsApp.
+              Sell online properly without the headache of chaotic instant
+              messages. Show products, manage inventory, and receive structured
+              requests directly on WhatsApp.
             </p>
 
             {/* Primary Actions */}
@@ -140,11 +143,11 @@ export const Hero: React.FC<HeroProps> = ({
                           className="bg-white border border-[#dedad3] rounded-xl p-2 relative flex flex-col justify-between group hover:border-[#1b9cda] transition-all"
                         >
                           <div className="aspect-square bg-[#ebe7e0] rounded-lg overflow-hidden mb-1.5 relative">
-                            <img
+                            <Image
                               src={item.image}
                               alt={item.name}
-                              className="w-full h-full object-cover"
-                              referrerPolicy="no-referrer"
+                              fill
+                              className="object-cover"
                             />
                           </div>
                           <div className="text-left">

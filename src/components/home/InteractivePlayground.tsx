@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { 
   TrendingUp, 
   ShoppingBag, 
@@ -300,7 +301,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                       return (
                         <button
                           key={subTab.id}
-                          onClick={() => setActiveDashboardSubTab(subTab.id as any)}
+                          onClick={() => setActiveDashboardSubTab(subTab.id as "metrics" | "products" | "analytics" | "assistant")}
                           className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 ${
                             activeDashboardSubTab === subTab.id
                               ? "bg-white text-[#0a1a3b] shadow-sm"
@@ -731,11 +732,11 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                           className="bg-white rounded-lg p-2 flex flex-col justify-between border hover:scale-[1.02] transition-all relative"
                         >
                           <div className="aspect-square bg-[#ebe7e0] rounded overflow-hidden mb-1 relative">
-                            <img
+                            <Image
                               src={p.image}
                               alt={p.name}
-                              className="w-full h-full object-cover"
-                              referrerPolicy="no-referrer"
+                              fill
+                              className="object-cover"
                             />
                           </div>
                           <div>

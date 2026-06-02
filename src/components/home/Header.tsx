@@ -4,6 +4,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface HeaderProps {
   mobileMenuOpen: boolean;
@@ -15,12 +16,12 @@ export const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, setMobileMenuOpe
     <header className="sticky top-0 z-50 bg-[#f3efe9]/80 backdrop-blur-md border-b border-[#dedad3] transition-all">
       <div className="max-w-7xl mx-auto px-6 h-18 md:h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center gap-2.5 group">
           <Image src="/trebo-icon-sm.png" width={30} height={30} alt="trebo logo" />
           <span className="font-extrabold text-xl tracking-tight text-[#0a1a3b] select-none">
             trebo
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <nav className="hidden md:flex items-center gap-8">
@@ -36,22 +37,22 @@ export const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, setMobileMenuOpe
           <a href="#faq" className="text-sm font-medium text-[#0a1a3b]/85 hover:text-[#1b9cda] transition-colors">
             FAQ
           </a>
-          <a
-            href="#customizer"
-            className="text-xs tracking-wide uppercase px-3 py-1 bg-[#ebe7e0] hover:bg-[#dedad3] text-[#0a1a3b] font-medium rounded-full transition-all subtle-border"
-          >
-            Interactive Playground
-          </a>
         </nav>
 
         {/* Action buttons */}
-        <div className="hidden md:flex items-center gap-4">
-          <a
-            href="#customizer"
-            className="px-5 py-2.5 rounded-full bg-[#0a1a3b] hover:bg-[#1b9cda] text-[#f3efe9] font-semibold text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#1b9cda]"
+        <div className="hidden md:flex items-center gap-6">
+          <Link 
+            href="/auth/login" 
+            className="text-sm font-semibold text-[#0a1a3b]/85 hover:text-[#1b9cda] transition-colors"
           >
-            Start your page
-          </a>
+            Login
+          </Link>
+          <Link
+            href="/auth/signup"
+            className="px-6 py-2.5 rounded-full bg-[#0a1a3b] hover:bg-[#1b9cda] text-[#f3efe9] font-semibold text-sm transition-all shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#1b9cda]"
+          >
+            Create account
+          </Link>
         </div>
 
         {/* Mobile hamburger button */}
@@ -104,20 +105,20 @@ export const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, setMobileMenuOpe
                 FAQ
               </a>
               <div className="h-[1px] bg-[#dedad3] my-2" />
-              <a
-                href="#customizer"
+              <Link
+                href="/auth/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 rounded-xl bg-[#ebe7e0] text-[#0a1a3b] text-center font-semibold text-sm mb-2"
+                className="text-base font-medium text-[#0a1a3b] py-2"
               >
-                Configure Store Live
-              </a>
-              <a
-                href="#customizer"
+                Login
+              </Link>
+              <Link
+                href="/auth/signup"
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 rounded-xl bg-[#0a1a3b] text-[#f3efe9] text-center font-semibold text-sm"
+                className="px-4 py-3.5 rounded-xl bg-[#0a1a3b] text-[#f3efe9] text-center font-semibold text-sm shadow-md"
               >
-                Start your page
-              </a>
+                Create account
+              </Link>
             </div>
           </motion.div>
         )}

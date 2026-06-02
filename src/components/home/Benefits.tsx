@@ -98,7 +98,7 @@ export const Benefits: React.FC<BenefitsProps> = ({
                   <span>Trebo AI Automation Enabled</span>
                 </div>
                 <p className="text-sm font-semibold text-[#0a1a3b] italic">
-                  "I followed up with 5 ghost buyers today. 2 of them are ready to pay!"
+                  &ldquo;I followed up with 5 ghost buyers today. 2 of them are ready to pay!&rdquo;
                 </p>
               </div>
               <button

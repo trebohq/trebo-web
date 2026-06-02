@@ -72,7 +72,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#128c7e_15%,transparent_16%)] bg-[length:14px_14px] pointer-events-none" />
               <div className="bg-[#dcf8c6] p-3 rounded-xl border border-emerald-200 text-xs font-semibold leading-relaxed text-[#0a1a3b] relative z-10">
                 <span>
-                  "Hello {businessName}! I am interested in purchasing the *{selectedProductForInquiry.name}* listed at *₦{selectedProductForInquiry.price.toLocaleString()}* on Trebo site. Please verify stock availability and provide bank dispatch details."
+                  &ldquo;Hello {businessName}! I am interested in purchasing the *{selectedProductForInquiry.name}* listed at *₦{selectedProductForInquiry.price.toLocaleString()}* on Trebo site. Please verify stock availability and provide bank dispatch details.&rdquo;
                 </span>
               </div>
               <span className="text-[9px] font-mono text-[#0a1a3b]/50 mt-1 block px-2 text-right relative z-10">
@@ -81,7 +81,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             </div>
 
             <div className="text-xs text-[#0a1a3b]/70 font-medium">
-              When click send, it redirects to the seller's active WhatsApp line (
+              When click send, it redirects to the seller&apos;s active WhatsApp line (
               <span className="font-bold font-mono">{whatsappNumber}</span>) with structured, validated order parameters. No time waste, no ghost buyer queries!
             </div>
 
