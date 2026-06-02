@@ -1,8 +1,41 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Play, ShieldCheck, MessageCircle } from "lucide-react";
 import { Product } from "./types";
+import { PhoneMockup } from "../ui/PhoneMockup";
+
+const ROTATING_WORDS = ["a Store.", "a Website.", "Trebo.", "Growth.", "an Edge."];
+
+function RotatingWord() {
+  const [index, setIndex] = useState(0);
+  const [phase, setPhase] = useState<"in" | "out">("in");
+
+  const next = useCallback(() => {
+    setPhase("out");
+    setTimeout(() => {
+      setIndex((prev) => (prev + 1) % ROTATING_WORDS.length);
+      setPhase("in");
+    }, 350);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(next, 2800);
+    return () => clearInterval(timer);
+  }, [next]);
+
+  return (
+    <span
+      className="inline-block transition-all duration-350 ease-[cubic-bezier(.4,0,.2,1)] text-[#1b9cda]"
+      style={{
+        transform: phase === "out" ? "translateY(-110%)" : "translateY(0)",
+        opacity: phase === "out" ? 0 : 1,
+      }}
+    >
+      {ROTATING_WORDS[index]}
+    </span>
+  );
+}
 
 interface HeroProps {
   businessName: string;
@@ -21,7 +54,19 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   return (
     <section className="relative overflow-hidden pt-12 pb-20 md:py-28 lg:py-12">
-      <div className="max-w-7xl mx-auto px-6">
+      {/* Professional Dot Pattern Background */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none opacity-80"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1.5' fill='%230a1a3b' fill-opacity='0.2'/%3E%3C/svg%3E")`,
+          maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)'
+        }}
+      />
+      {/* Subtle top glow to accentuate the layout */}
+      <div className="absolute top-0 inset-x-0 h-[300px] bg-gradient-to-b from-foreground/[0.02] to-transparent z-0 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Content Column */}
           <div className="lg:col-span-7 flex flex-col justify-center">
@@ -33,11 +78,14 @@ export const Hero: React.FC<HeroProps> = ({
               </span>
             </div> */}
 
-            {/* H1 Headline */}
+            {/* H1 Headline with rotating word */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight lg:leading-[1.1] text-[#0a1a3b] mb-6">
               Your business,
               <br className="hidden md:inline" />
-              Needs.
+              Needs{" "}
+              <span className="inline-flex relative overflow-hidden align-baseline" style={{ height: '1.15em' }}>
+                <RotatingWord />
+              </span>
             </h1>
 
             {/* Subtext (capped length as per guidelines) */}
@@ -46,18 +94,18 @@ export const Hero: React.FC<HeroProps> = ({
             </p>
 
             {/* Primary Actions */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8">
+            <div className="flex flex-row items-center gap-3 mb-8">
               <a
                 href="#customizer"
-                className="px-8 py-4 text-center rounded-full bg-[#0a1a3b] hover:bg-[#1b9cda] text-white font-bold text-base shadow-lg shadow-[#0a1a3b]/5 hover:shadow-xl transition-all"
+                className="flex-1 sm:flex-none px-4 py-3.5 sm:px-8 sm:py-4 text-center rounded-full bg-[#0a1a3b] hover:bg-[#1b9cda] text-white font-bold text-xs sm:text-base shadow-lg shadow-[#0a1a3b]/5 hover:shadow-xl transition-all whitespace-nowrap"
               >
                 Start your page
               </a>
               <a
                 href="#how-it-works"
-                className="px-6 py-4 rounded-full border border-[#dedad3] hover:bg-[#ebe7e0] text-[#0a1a3b] font-semibold text-sm flex items-center justify-center gap-2 transition-all"
+                className="flex-1 sm:flex-none px-4 py-3.5 sm:px-6 sm:py-4 rounded-full border border-border-subtle hover:bg-surface text-[#0a1a3b] font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all whitespace-nowrap"
               >
-                <Play size={16} fill="currentColor" />
+                <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="currentColor" />
                 See how it works
               </a>
             </div>
@@ -72,74 +120,55 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
           </div>
 
-          {/* Right Asset Column: Live Phone Mockup with direct interactive trigger */}
+          {/* Right Asset Column: Live Phone Mockup */}
           <div className="lg:col-span-5 relative flex justify-center">
-            {/* Background ambiance geometry (no neon purple, tasteful sand tones) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#ebe7e0] rounded-full filter blur-3xl opacity-70 pointer-events-none -z-10" />
+            {/* Background ambiance */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-surface rounded-full filter blur-3xl opacity-70 pointer-events-none -z-10" />
 
-            {/* Smartphone layout */}
-            <div className="w-full max-w-[340px] bg-zinc-900 rounded-[40px] p-3.5 shadow-2xl border border-zinc-800 relative">
-              {/* Speaker pill */}
-              <div className="absolute top-7 left-1/2 -translate-x-1/2 w-28 h-4 bg-zinc-950 rounded-full z-20 flex items-center justify-center">
-                <span className="w-1.5 h-1.5 rounded-full bg-zinc-700 mr-2" />
-                <span className="w-10 h-1 bg-zinc-800 rounded-full" />
-              </div>
-
-              {/* Live Screen Area */}
-              <div className="rounded-[28px] bg-[#f3efe9] overflow-hidden border border-zinc-950 relative aspect-[9/18] flex flex-col">
-                {/* Phone status bar */}
-                <div className="h-10 pt-4 px-6 flex justify-between items-center text-[10px] font-mono font-semibold text-[#0a1a3b]/70 bg-[#ebe7e0] border-b border-[#dedad3]">
-                  <span>08:42 AM</span>
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#1b9cda]" />
-                    <span>NG 4G</span>
-                  </div>
-                </div>
-
-                {/* Browser simulated Header */}
-                <div className="px-4 py-2 bg-white border-b border-[#dedad3] flex items-center gap-1.5">
-                  <div className="text-[10px] font-mono bg-[#f3efe9] px-2.5 py-1 rounded-md text-[#0a1a3b]/80 flex-1 overflow-hidden whitespace-nowrap text-left flex items-center gap-1">
+            <div className="w-full max-w-[280px]">
+              <PhoneMockup>
+                {/* Browser bar */}
+                <div className="px-3 py-1.5 bg-white border-b border-border-subtle flex items-center shrink-0">
+                  <div className="text-[9px] font-mono bg-background px-2 py-0.5 rounded text-[#0a1a3b]/80 flex-1 overflow-hidden whitespace-nowrap flex items-center gap-1">
                     <span className="text-emerald-500">🔒</span>
                     <span>trebo.site/</span>
-                    <span className="font-bold text-[#1b9cda] animate-pulse">
+                    <span className="font-bold text-[#1b9cda]">
                       {businessName.toLowerCase().replace(/\s+/g, "")}
                     </span>
                   </div>
                 </div>
 
-                {/* Storefront inside smartphone */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                {/* Storefront */}
+                <div className="flex-1 overflow-y-auto p-3 space-y-3">
                   {/* Brand Banner */}
-                  <div className="text-center bg-[#ebe7e0] rounded-2.5 p-4 border border-[#dedad3]">
-                    <div className="w-11 h-11 bg-[#0a1a3b] text-white rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-2">
+                  <div className="text-center bg-surface rounded-xl p-3 border border-border-subtle">
+                    <div className="w-9 h-9 bg-[#0a1a3b] text-white rounded-full flex items-center justify-center font-bold text-sm mx-auto mb-1.5">
                       {businessName.charAt(0)}
                     </div>
-                    <h3 className="font-extrabold text-[#0a1a3b] text-sm break-words">
+                    <h3 className="font-extrabold text-[#0a1a3b] text-xs break-words">
                       {businessName}
                     </h3>
-                    <div className="text-[10px] text-[#0a1a3b]/60 font-medium">
+                    <div className="text-[8px] text-[#0a1a3b]/60 font-medium">
                       {customCategory} • Lagos, Nigeria
                     </div>
-
-                    <div className="mt-2.5 inline-flex items-center gap-1 bg-[#1b9cda]/10 text-[#158bb3] text-[9px] font-bold px-2 py-0.5 rounded-full">
-                      <ShieldCheck size={10} className="fill-[#1b9cda]/20" />
+                    <div className="mt-1.5 inline-flex items-center gap-1 bg-[#1b9cda]/10 text-[#158bb3] text-[8px] font-bold px-1.5 py-0.5 rounded-full">
+                      <ShieldCheck size={8} className="fill-[#1b9cda]/20" />
                       <span>Verified Store</span>
                     </div>
                   </div>
 
                   {/* Products Grid */}
-                  <div className="space-y-3">
-                    <div className="text-xs font-bold uppercase tracking-wider text-[#0a1a3b]/60 text-left">
+                  <div className="space-y-2">
+                    <div className="text-[9px] font-bold uppercase tracking-wider text-[#0a1a3b]/60 text-left">
                       Catalog
                     </div>
-
-                    <div className="grid grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-2 gap-2">
                       {activeProducts.slice(0, 4).map((item) => (
                         <div
                           key={item.id}
-                          className="bg-white border border-[#dedad3] rounded-xl p-2 relative flex flex-col justify-between group hover:border-[#1b9cda] transition-all"
+                          className="bg-white border border-border-subtle rounded-lg p-1.5 flex flex-col justify-between group hover:border-[#1b9cda] transition-all"
                         >
-                          <div className="aspect-square bg-[#ebe7e0] rounded-lg overflow-hidden mb-1.5 relative">
+                          <div className="aspect-square bg-surface rounded-md overflow-hidden mb-1 relative">
                             <img
                               src={item.image}
                               alt={item.name}
@@ -148,10 +177,10 @@ export const Hero: React.FC<HeroProps> = ({
                             />
                           </div>
                           <div className="text-left">
-                            <h4 className="font-bold text-[10px] text-[#0a1a3b] line-clamp-1">
+                            <h4 className="font-bold text-[8px] text-[#0a1a3b] line-clamp-1">
                               {item.name}
                             </h4>
-                            <p className="font-extrabold text-xs text-[#1b9cda] mt-0.5">
+                            <p className="font-extrabold text-[10px] text-[#1b9cda] mt-0.5">
                               ₦{item.price.toLocaleString()}
                             </p>
                           </div>
@@ -160,9 +189,9 @@ export const Hero: React.FC<HeroProps> = ({
                               setSelectedProductForInquiry(item);
                               setCheckoutModalOpen(true);
                             }}
-                            className="mt-2 w-full py-1 rounded bg-[#0a1a3b] hover:bg-[#1b9cda] text-white text-[9px] font-bold transition-all flex items-center justify-center gap-0.5"
+                            className="mt-1 w-full py-0.5 rounded bg-[#0a1a3b] hover:bg-[#1b9cda] text-white text-[8px] font-bold transition-all flex items-center justify-center gap-0.5"
                           >
-                            <MessageCircle size={10} />
+                            <MessageCircle size={8} />
                             Inquire
                           </button>
                         </div>
@@ -171,10 +200,10 @@ export const Hero: React.FC<HeroProps> = ({
                   </div>
                 </div>
 
-                {/* WhatsApp Sticky Checkout Mock button */}
-                <div className="p-2.5 bg-white border-t border-[#dedad3] text-[10px] flex items-center justify-between">
+                {/* Bottom bar */}
+                <div className="p-2 bg-white border-t border-border-subtle text-[9px] flex items-center justify-between shrink-0">
                   <span className="font-semibold text-[#0a1a3b]/70">
-                    Need anything else?
+                    Need anything?
                   </span>
                   <button
                     onClick={() => {
@@ -184,16 +213,16 @@ export const Hero: React.FC<HeroProps> = ({
                         setCheckoutModalOpen(true);
                       }
                     }}
-                    className="px-3 py-1.5 rounded-full bg-[#1b9cda] hover:bg-[#158bb3] text-white font-extrabold text-[9px] transition-all"
+                    className="px-2 py-1 rounded-full bg-[#1b9cda] hover:bg-[#158bb3] text-white font-extrabold text-[8px] transition-all"
                   >
                     Instant DM
                   </button>
                 </div>
-              </div>
+              </PhoneMockup>
             </div>
 
-            {/* Floating aesthetic labels context from request */}
-            <div className="absolute -right-4 top-10 bg-white shadow-xl rounded-2xl p-3 border border-[#dedad3] max-w-[150px] text-left hidden sm:block">
+            {/* Floating aesthetic labels */}
+            <div className="absolute -right-4 top-10 bg-white shadow-xl rounded-2xl p-3 border border-border-subtle max-w-[150px] text-left hidden sm:block">
               <p className="text-[10px] font-mono text-[#0a1a3b]/60 uppercase">
                 User Customizer
               </p>
@@ -202,7 +231,7 @@ export const Hero: React.FC<HeroProps> = ({
               </p>
             </div>
 
-            <div className="absolute -left-6 bottom-12 bg-white shadow-xl rounded-2xl p-3 border border-[#dedad3] max-w-[160px] text-left hidden sm:block">
+            <div className="absolute -left-6 bottom-12 bg-white shadow-xl rounded-2xl p-3 border border-border-subtle max-w-[160px] text-left hidden sm:block">
               <div className="flex items-center gap-1.5 mb-1 bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full w-fit">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-[9px] font-bold">LIVE CHAT</span>

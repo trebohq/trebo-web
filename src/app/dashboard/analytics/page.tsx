@@ -100,36 +100,65 @@ export default function AnalyticsPage() {
     }));
 
     return (
-        <div className="space-y-6">
-            {/* Header */}
-            <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-            >
-                <div>
-                    <h1 className="text-2xl font-extrabold text-[#0a1a3b] tracking-tight">Analytics</h1>
-                    <p className="text-[#0a1a3b]/50 text-sm mt-1">Track your store's performance over time.</p>
+        <div className="flex flex-col">
+            {/* Page Header (Sub-header) */}
+            <div className="bg-[#0a1a3b] text-white pt-8 pb-32 px-4 md:px-6 lg:px-10 -mx-4 md:-mx-6 lg:-mx-10 -mt-4 md:-mt-6 lg:-mt-10 mb-0">
+                <div className="max-w-[1600px] mx-auto flex items-end justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl font-extrabold tracking-tight">Analytics</h1>
+                        <p className="text-white/60 text-sm mt-1">Track your store&apos;s performance over time.</p>
+                    </div>
+                    <select
+                        value={range}
+                        onChange={(e) => setRange(e.target.value)}
+                        className="text-xs font-bold text-white bg-white/10 border border-white/10 rounded-lg px-3 py-2 outline-none cursor-pointer focus:ring-2 focus:ring-white/20 transition-all w-fit shrink-0"
+                    >
+                        {ranges.map((r) => <option key={r} value={r} className="bg-[#0a1a3b] text-white">{r}</option>)}
+                    </select>
                 </div>
-                <select
-                    value={range}
-                    onChange={(e) => setRange(e.target.value)}
-                    className="text-sm font-bold text-[#0a1a3b] bg-white border border-[#eae6df] rounded-xl px-4 py-2.5 outline-none shadow-sm cursor-pointer focus:ring-2 focus:ring-[#1b9cda]/20 focus:border-[#1b9cda] transition-all"
-                >
-                    {ranges.map((r) => <option key={r} value={r}>{r}</option>)}
-                </select>
-            </motion.div>
+            </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <StatsCard title="Total Views" value="4,120" trend="12.5%" trendUp={true} icon={<Eye size={20} />}
-                    sparkline={[30, 55, 28, 62, 35, 48, 70, 32, 58, 40, 75, 38, 65, 42, 80, 45, 60, 38, 85, 50, 68, 42, 88, 55, 72, 48, 90, 60, 78, 92]} />
-                <StatsCard title="Link Clicks" value="342" trend="8.3%" trendUp={true} icon={<CursorClick size={20} />}
-                    sparkline={[20, 45, 18, 52, 28, 38, 62, 22, 48, 30, 58, 25, 55, 35, 68, 28, 50, 20, 72, 38, 55, 30, 75, 42, 60, 35, 78, 50, 65, 82]} />
-                <StatsCard title="Unique Visitors" value="2,860" trend="5.7%" trendUp={true} icon={<Users size={20} />}
-                    sparkline={[25, 48, 20, 55, 32, 42, 65, 25, 52, 35, 70, 28, 60, 40, 75, 32, 55, 22, 78, 45, 62, 35, 80, 50, 68, 40, 85, 55, 72, 90]} />
-                <StatsCard title="Conversion Rate" value="8.3%" trend="1.2%" trendUp={false} icon={<TrendUp size={20} />}
-                    sparkline={[90, 72, 95, 68, 85, 60, 88, 55, 80, 50, 82, 45, 75, 40, 78, 36, 70, 32, 72, 28, 65, 25, 68, 22, 60, 20, 55, 18, 45, 28]} />
+            {/* Main Content Area (Overlapping Header) */}
+            <div className="relative z-10 -mt-24 space-y-6 max-w-[1600px] mx-auto w-full">
+
+            {/* Stats — Mobile: 2×2 widget card / Desktop: 4-column grid */}
+            {/* Mobile 2×2 card */}
+            <div className="md:hidden bg-white border border-[#eae6df] rounded-2xl shadow-sm overflow-hidden">
+                <div className="grid grid-cols-2">
+                    {[
+                        { title: "Total Views", value: "4,120", trend: "12.5%", trendUp: true, icon: <Eye size={16} weight="bold" /> },
+                        { title: "Link Clicks", value: "342", trend: "8.3%", trendUp: true, icon: <CursorClick size={16} weight="bold" /> },
+                        { title: "Visitors", value: "2,860", trend: "5.7%", trendUp: true, icon: <Users size={16} weight="bold" /> },
+                        { title: "Conversion", value: "8.3%", trend: "1.2%", trendUp: false, icon: <TrendUp size={16} weight="bold" /> },
+                    ].map((s, i) => (
+                        <div
+                            key={s.title}
+                            className={`px-4 py-5 flex flex-col gap-2.5 min-w-0 ${
+                                i < 2 ? "border-b border-[#eae6df]" : ""
+                            } ${i % 2 === 0 ? "border-r border-[#eae6df]" : ""}`}
+                        >
+                            <div className="flex items-center justify-between">
+                                <div className="w-8 h-8 rounded-lg bg-[#0a1a3b]/5 flex items-center justify-center text-[#0a1a3b]/50">{s.icon}</div>
+                                {s.trend ? (
+                                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md shrink-0 ${s.trendUp ? "text-emerald-600 bg-emerald-50" : "text-red-500 bg-red-50"}`}>
+                                        {s.trendUp ? "↑" : "↓"}{s.trend}
+                                    </span>
+                                ) : <span />}
+                            </div>
+                            <div className="min-w-0">
+                                <p className="text-lg font-extrabold text-[#0a1a3b] tracking-tight leading-none truncate" style={{ fontVariantNumeric: 'tabular-nums' }}>{s.value}</p>
+                                <p className="text-[9px] font-bold uppercase tracking-widest text-[#0a1a3b]/35 mt-1 truncate">{s.title}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            {/* Desktop 4-column grid */}
+            <div className="hidden md:grid md:grid-cols-4 gap-4">
+                <StatsCard title="Total Views" value="4,120" trend="12.5%" trendUp={true} icon={<Eye size={20} />} />
+                <StatsCard title="Link Clicks" value="342" trend="8.3%" trendUp={true} icon={<CursorClick size={20} />} />
+                <StatsCard title="Unique Visitors" value="2,860" trend="5.7%" trendUp={true} icon={<Users size={20} />} />
+                <StatsCard title="Conversion Rate" value="8.3%" trend="1.2%" trendUp={false} icon={<TrendUp size={20} />} />
             </div>
 
             {/* Revenue area chart + Traffic pie */}
@@ -232,7 +261,7 @@ export default function AnalyticsPage() {
                         {topProducts.length} products
                     </div>
                 </div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto no-scrollbar">
                     <table className="w-full">
                         <thead>
                             <tr className="border-b border-[#eae6df]">
@@ -266,6 +295,7 @@ export default function AnalyticsPage() {
                         </tbody>
                     </table>
                 </div>
+            </div>
             </div>
         </div>
     );

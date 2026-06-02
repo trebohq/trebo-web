@@ -16,8 +16,8 @@ const categories = [
 
 export const CategoryMarquee: React.FC = () => {
   return (
-    <div className="py-4 border-y border-[#dedad3] bg-[#ebe7e0] overflow-hidden whitespace-nowrap pointer-events-none select-none">
-      <div className="inline-block animate-marquee">
+    <div className="flex overflow-hidden whitespace-nowrap py-4 border-y border-border-subtle bg-surface pointer-events-none select-none">
+      <div className="flex shrink-0 animate-marquee">
         {categories.map((themeName, i) => (
           <span
             key={i}
@@ -28,7 +28,7 @@ export const CategoryMarquee: React.FC = () => {
           </span>
         ))}
       </div>
-      <div className="inline-block animate-marquee" aria-hidden="true">
+      <div className="flex shrink-0 animate-marquee" aria-hidden="true">
         {categories.map((themeName, i) => (
           <span
             key={`dup-${i}`}

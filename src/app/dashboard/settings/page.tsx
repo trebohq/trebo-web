@@ -502,20 +502,24 @@ export default function SettingsPage() {
     };
 
     return (
-        <div className="space-y-6">
-            {/* Page Header */}
-            <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-            >
-                <h1 className="text-2xl font-extrabold text-[#0a1a3b] tracking-tight">Settings</h1>
-                <p className="text-[#0a1a3b]/50 text-sm mt-1">Manage your account and store preferences.</p>
-            </motion.div>
+        <div className="flex flex-col">
+            {/* Page Header (Sub-header) */}
+            <div className="bg-[#0a1a3b] text-white pt-8 pb-32 px-4 md:px-6 lg:px-10 -mx-4 md:-mx-6 lg:-mx-10 -mt-4 md:-mt-6 lg:-mt-10 mb-0">
+                <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl font-extrabold tracking-tight">Settings</h1>
+                        <p className="text-white/60 text-sm mt-1">Manage your account and store preferences.</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Main Content Area (Overlapping Header) */}
+            <div className="relative z-10 -mt-24 max-w-[1600px] mx-auto w-full">
 
             <div className="flex flex-col lg:flex-row gap-6">
                 {/* Sidebar Nav */}
-                <nav className="lg:w-64 shrink-0">
-                    <ul className="flex flex-row lg:flex-col gap-1 overflow-x-auto lg:overflow-x-visible pb-1 lg:pb-0">
+                <nav className="lg:w-64 shrink-0 bg-white border border-[#eae6df] rounded-2xl p-3 shadow-sm h-fit">
+                    <ul className="flex flex-row lg:flex-col gap-1 overflow-x-auto lg:overflow-x-visible no-scrollbar pb-1 lg:pb-0">
                         {nav.map(({ id, label, icon, description }) => (
                             <li key={id} className="shrink-0 lg:shrink">
                                 <button
@@ -524,6 +528,7 @@ export default function SettingsPage() {
                                         ? "bg-[#0a1a3b] text-white shadow-sm"
                                         : "text-[#0a1a3b] hover:bg-[#eae6df]/60"
                                         }`}
+                                  aria-label={`Open ${label} settings`}
                                 >
                                     <span className={active === id ? "text-white" : "text-[#0a1a3b]/50"}>{icon}</span>
                                     <div className="flex-1 min-w-0 hidden lg:block">
@@ -556,6 +561,7 @@ export default function SettingsPage() {
                         {sectionComponents[active]}
                     </motion.div>
                 </div>
+            </div>
             </div>
         </div>
     );

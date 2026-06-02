@@ -18,35 +18,67 @@ const recentInquiries = [
 
 export default function DashboardOverview() {
   return (
-    <div className="space-y-6">
-      {/* Welcome Banner */}
+    <div className="flex flex-col">
+      {/* Page Header (Sub-header) */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-[#0a1a3b] rounded-2xl p-6 text-white flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm"
+        className="bg-[#0a1a3b] text-white pt-8 pb-32 px-4 md:px-6 lg:px-10 -mx-4 md:-mx-6 lg:-mx-10 -mt-4 md:-mt-6 lg:-mt-10"
       >
-        <div>
-          <h2 className="text-2xl font-extrabold tracking-tight mb-1">Welcome back, Adaeze! 👋</h2>
-          <p className="text-white/70 text-sm">Here's what's happening with your store today.</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Link href="/dashboard/products" className="bg-[#1b9cda] hover:bg-[#1b9cda]/90 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2">
-            <Plus size={16} /> Add Product
-          </Link>
+        <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-extrabold tracking-tight mb-1">Welcome back, Adaeze! 👋</h1>
+            <p className="text-white/60 text-sm">Here's what's happening with your store today.</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <Link href="/dashboard/products" className="bg-[#1b9cda] hover:bg-[#1b9cda]/90 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 shadow-lg shadow-blue-500/10">
+              <Plus size={16} /> Add Product
+            </Link>
+          </div>
         </div>
       </motion.div>
 
-      {/* Quick Stats Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatsCard title="Total Views" value="4,120" trend="12.5%" trendUp={true} icon={<Eye size={20} />}
-          sparkline={[30, 55, 28, 62, 35, 48, 70, 32, 58, 40, 75, 38, 65, 42, 80, 45, 60, 38, 85, 50, 68, 42, 88, 55, 72, 48, 90, 60, 78, 92]} />
-        <StatsCard title="Link Clicks" value="342" trend="8.3%" trendUp={true} icon={<CursorClick size={20} />}
-          sparkline={[20, 45, 18, 52, 28, 38, 62, 22, 48, 30, 58, 25, 55, 35, 68, 28, 50, 20, 72, 38, 55, 30, 75, 42, 60, 35, 78, 50, 65, 82]} />
-        <StatsCard title="Active Inquiries" value="28" icon={<ChatCircle size={20} />}
-          sparkline={[45, 62, 38, 70, 42, 65, 35, 72, 40, 58, 44, 75, 36, 68, 42, 60, 38, 72, 45, 63, 37, 70, 43, 58, 39, 66, 41, 74, 38, 62]} />
-        <StatsCard title="Est. Revenue" value="₦285k" trend="15.0%" trendUp={true} icon={<Wallet size={20} />}
-          sparkline={[25, 50, 22, 58, 32, 42, 68, 28, 55, 38, 72, 30, 62, 45, 78, 35, 58, 25, 82, 48, 65, 38, 85, 52, 70, 45, 90, 58, 75, 95]} />
-      </div>
+      {/* Main Content Area (Overlapping Header) */}
+      <div className="relative z-10 -mt-24 space-y-6">
+        {/* Quick Stats — Mobile: 2×2 widget card / Desktop: 4-column grid */}
+        {/* Mobile 2×2 card */}
+        <div className="md:hidden bg-white border border-[#eae6df] rounded-2xl shadow-sm overflow-hidden">
+          <div className="grid grid-cols-2">
+            {[
+              { title: "Total Views", value: "4,120", trend: "12.5%", trendUp: true, icon: <Eye size={16} weight="bold" /> },
+              { title: "Link Clicks", value: "342", trend: "8.3%", trendUp: true, icon: <CursorClick size={16} weight="bold" /> },
+              { title: "Inquiries", value: "28", trend: undefined, trendUp: undefined, icon: <ChatCircle size={16} weight="bold" /> },
+              { title: "Revenue", value: "₦285k", trend: "15.0%", trendUp: true, icon: <Wallet size={16} weight="bold" /> },
+            ].map((s, i) => (
+              <div
+                key={s.title}
+                className={`px-4 py-5 flex flex-col gap-2.5 min-w-0 ${
+                  i < 2 ? "border-b border-[#eae6df]" : ""
+                } ${i % 2 === 0 ? "border-r border-[#eae6df]" : ""}`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="w-8 h-8 rounded-lg bg-[#0a1a3b]/5 flex items-center justify-center text-[#0a1a3b]/50">{s.icon}</div>
+                  {s.trend ? (
+                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md shrink-0 ${s.trendUp ? "text-emerald-600 bg-emerald-50" : "text-red-500 bg-red-50"}`}>
+                      {s.trendUp ? "↑" : "↓"}{s.trend}
+                    </span>
+                  ) : <span />}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-lg font-extrabold text-[#0a1a3b] tracking-tight leading-none truncate" style={{ fontVariantNumeric: 'tabular-nums' }}>{s.value}</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-[#0a1a3b]/35 mt-1 truncate">{s.title}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Desktop 4-column grid */}
+        <div className="hidden md:grid md:grid-cols-4 gap-4">
+          <StatsCard title="Total Views" value="4,120" trend="12.5%" trendUp={true} icon={<Eye size={20} />} />
+          <StatsCard title="Link Clicks" value="342" trend="8.3%" trendUp={true} icon={<CursorClick size={20} />} />
+          <StatsCard title="Active Inquiries" value="28" icon={<ChatCircle size={20} />} />
+          <StatsCard title="Est. Revenue" value="₦285k" trend="15.0%" trendUp={true} icon={<Wallet size={20} />} />
+        </div>
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -118,6 +150,7 @@ export default function DashboardOverview() {
             },
           ]}
         />
+      </div>
       </div>
     </div>
   );

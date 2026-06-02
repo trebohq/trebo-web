@@ -307,8 +307,7 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
     <>
       {/* Desktop sidebar */}
       <aside
-        className={`hidden lg:flex flex-col bg-[#0a1a3b] fixed top-0 left-0 h-screen z-40 transition-all duration-300 ${collapsed ? "w-[72px] overflow-visible" : "w-[260px]"
-          }`}
+        className="hidden"
       >
         {renderSidebarContent(collapsed)}
       </aside>

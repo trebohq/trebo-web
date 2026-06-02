@@ -95,23 +95,28 @@ export default function ProductsPage() {
     };
 
     return (
-        <div className="space-y-5">
-            {/* Header row */}
-            <div className="flex items-center justify-between gap-3">
-                <div>
-                    <h1 className="text-xl font-extrabold text-[#0a1a3b] tracking-tight">Products</h1>
-                    <p className="text-[#0a1a3b]/40 text-xs mt-0.5">
-                        {counts.all} total · {counts.active} active · {counts.draft} draft
-                    </p>
+        <div className="flex flex-col">
+            {/* Page Header (Sub-header) */}
+            <div className="bg-[#0a1a3b] text-white pt-8 pb-32 px-4 md:px-6 lg:px-10 -mx-4 md:-mx-6 lg:-mx-10 -mt-4 md:-mt-6 lg:-mt-10 mb-0">
+                <div className="max-w-[1600px] mx-auto flex items-center justify-between gap-3">
+                    <div>
+                        <h1 className="text-xl font-extrabold tracking-tight">Products</h1>
+                        <p className="text-white/60 text-xs mt-0.5">
+                            {counts.all} total · {counts.active} active · {counts.draft} draft
+                        </p>
+                    </div>
+                    <button
+                        onClick={() => setIsAdding(!isAdding)}
+                        className="inline-flex items-center gap-1.5 bg-[#1b9cda] hover:bg-[#1b9cda]/90 text-white px-3.5 py-2 rounded-xl text-sm font-bold transition-colors shrink-0 shadow-lg shadow-blue-500/10"
+                    >
+                        {isAdding ? <X size={15} weight="bold" /> : <Plus size={15} weight="bold" />}
+                        {isAdding ? "Cancel" : "Add"}
+                    </button>
                 </div>
-                <button
-                    onClick={() => setIsAdding(!isAdding)}
-                    className="inline-flex items-center gap-1.5 bg-[#1b9cda] hover:bg-[#1b9cda]/90 text-white px-3.5 py-2 rounded-xl text-sm font-bold transition-colors shrink-0"
-                >
-                    {isAdding ? <X size={15} weight="bold" /> : <Plus size={15} weight="bold" />}
-                    {isAdding ? "Cancel" : "Add"}
-                </button>
             </div>
+
+            {/* Main Content Area (Overlapping Header) */}
+            <div className="relative z-10 -mt-24 space-y-5 max-w-[1600px] mx-auto w-full">
 
             {/* Add Product Form */}
             <AnimatePresence>
@@ -157,63 +162,66 @@ export default function ProductsPage() {
                 )}
             </AnimatePresence>
 
-            {/* Toolbar — single row, scrollable on mobile */}
-            <div className="flex items-center gap-2">
-                {/* Search */}
-                <div className="relative flex-1 min-w-0">
-                    <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#0a1a3b]/40" />
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                        className="w-full pl-9 pr-3 py-2.5 bg-white border border-[#eae6df] rounded-xl text-sm text-[#0a1a3b] placeholder-[#0a1a3b]/40 focus:outline-none focus:ring-2 focus:ring-[#1b9cda]/20 focus:border-[#1b9cda] transition-all"
-                    />
-                </div>
+            {/* Search and Filters Card */}
+            <div className="bg-white border border-[#eae6df] rounded-2xl p-4 shadow-sm space-y-4">
+                {/* Toolbar — single row, scrollable on mobile */}
+                <div className="flex items-center gap-2">
+                    {/* Search */}
+                    <div className="relative flex-1 min-w-0">
+                        <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#0a1a3b]/40" />
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            value={search}
+                            onChange={e => setSearch(e.target.value)}
+                            className="w-full pl-9 pr-3 py-2.5 bg-[#f8f6f3] border border-[#eae6df] rounded-xl text-sm text-[#0a1a3b] placeholder-[#0a1a3b]/40 focus:outline-none focus:ring-2 focus:ring-[#1b9cda]/20 focus:border-[#1b9cda] transition-all"
+                        />
+                    </div>
 
-                {/* Category — hidden on smallest screens */}
-                <select
-                    value={selectedCategory}
-                    onChange={e => setSelectedCategory(e.target.value)}
-                    className="hidden sm:block py-2.5 px-3 bg-white border border-[#eae6df] rounded-xl text-sm text-[#0a1a3b] focus:outline-none focus:ring-2 focus:ring-[#1b9cda]/20 focus:border-[#1b9cda] cursor-pointer shrink-0"
-                >
-                    {categories.map(cat => <option key={cat} value={cat}>{cat === "All" ? "All Categories" : cat}</option>)}
-                </select>
-
-                {/* View toggle */}
-                <div className="flex items-center bg-[#f3f4f6] rounded-xl p-1 shrink-0">
-                    <button onClick={() => setViewMode("grid")} aria-label="Grid view" className={`p-1.5 rounded-lg transition-all ${viewMode === "grid" ? "bg-white text-[#0a1a3b] shadow-sm" : "text-[#0a1a3b]/40"}`}>
-                        <SquaresFour size={16} />
-                    </button>
-                    <button onClick={() => setViewMode("list")} aria-label="List view" className={`p-1.5 rounded-lg transition-all ${viewMode === "list" ? "bg-white text-[#0a1a3b] shadow-sm" : "text-[#0a1a3b]/40"}`}>
-                        <Rows size={16} />
-                    </button>
-                </div>
-            </div>
-
-            {/* Status filter pills — scrollable row */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 -mx-1 px-1">
-                {(["All", "Active", "Draft"] as const).map(s => (
-                    <button
-                        key={s}
-                        onClick={() => setStatusFilter(s)}
-                        className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border ${statusFilter === s
-                            ? "bg-[#0a1a3b] text-white border-[#0a1a3b]"
-                            : "bg-white text-[#0a1a3b]/50 border-[#eae6df] hover:text-[#0a1a3b]"
-                            }`}
-                    >
-                        {s} {s === "All" ? `(${counts.all})` : s === "Active" ? `(${counts.active})` : `(${counts.draft})`}
-                    </button>
-                ))}
-                {/* Category on mobile */}
-                <div className="sm:hidden ml-auto shrink-0">
+                    {/* Category — hidden on smallest screens */}
                     <select
                         value={selectedCategory}
                         onChange={e => setSelectedCategory(e.target.value)}
-                        className="py-1.5 px-3 bg-white border border-[#eae6df] rounded-full text-xs font-bold text-[#0a1a3b] focus:outline-none cursor-pointer"
+                        className="hidden sm:block py-2.5 px-3 bg-[#f8f6f3] border border-[#eae6df] rounded-xl text-sm text-[#0a1a3b] focus:outline-none focus:ring-2 focus:ring-[#1b9cda]/20 focus:border-[#1b9cda] cursor-pointer shrink-0"
                     >
-                        {categories.map(cat => <option key={cat} value={cat}>{cat === "All" ? "All" : cat}</option>)}
+                        {categories.map(cat => <option key={cat} value={cat}>{cat === "All" ? "All Categories" : cat}</option>)}
                     </select>
+
+                    {/* View toggle */}
+                    <div className="flex items-center bg-[#f3f4f6] rounded-xl p-1 shrink-0">
+                        <button onClick={() => setViewMode("grid")} aria-label="Grid view" className={`p-1.5 rounded-lg transition-all ${viewMode === "grid" ? "bg-white text-[#0a1a3b] shadow-sm" : "text-[#0a1a3b]/40"}`}>
+                            <SquaresFour size={16} />
+                        </button>
+                        <button onClick={() => setViewMode("list")} aria-label="List view" className={`p-1.5 rounded-lg transition-all ${viewMode === "list" ? "bg-white text-[#0a1a3b] shadow-sm" : "text-[#0a1a3b]/40"}`}>
+                            <Rows size={16} />
+                        </button>
+                    </div>
+                </div>
+
+                {/* Status filter pills — scrollable row */}
+                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 -mx-1 px-1">
+                    {(["All", "Active", "Draft"] as const).map(s => (
+                        <button
+                            key={s}
+                            onClick={() => setStatusFilter(s)}
+                            className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border ${statusFilter === s
+                                ? "bg-[#0a1a3b] text-white border-[#0a1a3b]"
+                                : "bg-[#f8f6f3] text-[#0a1a3b]/50 border-[#eae6df] hover:text-[#0a1a3b]"
+                                }`}
+                        >
+                            {s} {s === "All" ? `(${counts.all})` : s === "Active" ? `(${counts.active})` : `(${counts.draft})`}
+                        </button>
+                    ))}
+                    {/* Category on mobile */}
+                    <div className="sm:hidden ml-auto shrink-0">
+                        <select
+                            value={selectedCategory}
+                            onChange={e => setSelectedCategory(e.target.value)}
+                            className="py-1.5 px-3 bg-[#f8f6f3] border border-[#eae6df] rounded-full text-xs font-bold text-[#0a1a3b] focus:outline-none cursor-pointer"
+                        >
+                            {categories.map(cat => <option key={cat} value={cat}>{cat === "All" ? "All" : cat}</option>)}
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -343,6 +351,7 @@ export default function ProductsPage() {
                     )}
                 </div>
             )}
+            </div>
         </div>
     );
 }

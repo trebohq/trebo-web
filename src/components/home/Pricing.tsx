@@ -15,7 +15,7 @@ export const Pricing: React.FC<PricingProps> = ({
   setActiveWorkspaceTab,
 }) => {
   return (
-    <section id="pricing" className="macro-padding border-b border-[#dedad3] bg-[#ebe7e0]/50">
+    <section id="pricing" className="macro-padding border-b border-border-subtle bg-surface/50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-[#1b9cda] bg-[#1b9cda]/10 px-3 py-1 rounded-full">
@@ -53,7 +53,7 @@ export const Pricing: React.FC<PricingProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {/* Plan 1 - Starter */}
-          <div className="bg-white border border-[#dedad3] rounded-3xl p-8 flex flex-col justify-between text-left">
+          <div className="bg-white border border-border-subtle rounded-3xl p-8 flex flex-col justify-between text-left">
             <div>
               <span className="text-xs font-bold text-[#0a1a3b]/50 uppercase tracking-widest block mb-2">
                 Starter Plan
@@ -72,7 +72,7 @@ export const Pricing: React.FC<PricingProps> = ({
                 </span>
               </div>
 
-              <div className="h-[1px] bg-[#dedad3] mb-6" />
+              <div className="h-[1px] bg-border-subtle mb-6" />
 
               <ul className="space-y-3.5 mb-8">
                 <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
@@ -100,7 +100,7 @@ export const Pricing: React.FC<PricingProps> = ({
 
             <a
               href="#customizer"
-              className="w-full text-center py-3.5 rounded-xl border border-[#dedad3] hover:bg-[#ebe7e0] text-[#0a1a3b] font-bold text-xs uppercase tracking-wide transition-all"
+              className="w-full text-center py-3.5 rounded-xl border border-border-subtle hover:bg-surface text-[#0a1a3b] font-bold text-xs uppercase tracking-wide transition-all"
             >
               Select Starter
             </a>
@@ -130,7 +130,7 @@ export const Pricing: React.FC<PricingProps> = ({
                 </span>
               </div>
 
-              <div className="h-[1px] bg-[#dedad3] mb-6" />
+              <div className="h-[1px] bg-border-subtle mb-6" />
 
               <ul className="space-y-3.5 mb-8">
                 <li className="text-xs font-extrabold flex items-center gap-2 text-[#1b9cda]">
@@ -175,7 +175,7 @@ export const Pricing: React.FC<PricingProps> = ({
           </div>
 
           {/* Plan 3 - Premium */}
-          <div className="bg-white border border-[#dedad3] rounded-3xl p-8 flex flex-col justify-between text-left">
+          <div className="bg-white border border-border-subtle rounded-3xl p-8 flex flex-col justify-between text-left">
             <div>
               <span className="text-xs font-bold text-[#0a1a3b]/50 uppercase tracking-widest block mb-2">
                 Complete Branding Identity
@@ -194,7 +194,7 @@ export const Pricing: React.FC<PricingProps> = ({
                 </span>
               </div>
 
-              <div className="h-[1px] bg-[#dedad3] mb-6" />
+              <div className="h-[1px] bg-border-subtle mb-6" />
 
               <ul className="space-y-3.5 mb-8">
                 <li className="text-xs font-bold text-[#0a1a3b] flex items-center gap-2">
@@ -222,7 +222,7 @@ export const Pricing: React.FC<PricingProps> = ({
 
             <a
               href="#customizer"
-              className="w-full text-center py-3.5 rounded-xl border border-[#dedad3] hover:bg-[#ebe7e0] text-[#0a1a3b] font-bold text-xs uppercase tracking-wide transition-all"
+              className="w-full text-center py-3.5 rounded-xl border border-border-subtle hover:bg-surface text-[#0a1a3b] font-bold text-xs uppercase tracking-wide transition-all"
             >
               Select Premium
             </a>

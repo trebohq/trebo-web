@@ -12,7 +12,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, setMobileMenuOpen }) => {
   return (
-    <header className="sticky top-0 z-50 bg-[#f3efe9]/80 backdrop-blur-md border-b border-[#dedad3] transition-all">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border-subtle transition-all">
       <div className="max-w-7xl mx-auto px-6 h-18 md:h-20 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5 group">
@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, setMobileMenuOpe
           </a>
           <a
             href="#customizer"
-            className="text-xs tracking-wide uppercase px-3 py-1 bg-[#ebe7e0] hover:bg-[#dedad3] text-[#0a1a3b] font-medium rounded-full transition-all subtle-border"
+            className="text-xs tracking-wide uppercase px-3 py-1 bg-surface hover:bg-border-subtle text-[#0a1a3b] font-medium rounded-full transition-all subtle-border"
           >
             Interactive Playground
           </a>
@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, setMobileMenuOpe
         <div className="hidden md:flex items-center gap-4">
           <a
             href="#customizer"
-            className="px-5 py-2.5 rounded-full bg-[#0a1a3b] hover:bg-[#1b9cda] text-[#f3efe9] font-semibold text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#1b9cda]"
+            className="px-5 py-2.5 rounded-full bg-[#0a1a3b] hover:bg-[#1b9cda] text-background font-semibold text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#1b9cda]"
           >
             Start your page
           </a>
@@ -72,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, setMobileMenuOpe
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden border-b border-[#dedad3] bg-[#f3efe9] overflow-hidden"
+            className="md:hidden border-b border-border-subtle bg-background overflow-hidden"
           >
             <div className="px-6 py-6 flex flex-col gap-4">
               <a
@@ -103,18 +103,18 @@ export const Header: React.FC<HeaderProps> = ({ mobileMenuOpen, setMobileMenuOpe
               >
                 FAQ
               </a>
-              <div className="h-[1px] bg-[#dedad3] my-2" />
+              <div className="h-[1px] bg-border-subtle my-2" />
               <a
                 href="#customizer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 rounded-xl bg-[#ebe7e0] text-[#0a1a3b] text-center font-semibold text-sm mb-2"
+                className="px-4 py-3 rounded-xl bg-surface text-[#0a1a3b] text-center font-semibold text-sm mb-2"
               >
                 Configure Store Live
               </a>
               <a
                 href="#customizer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 rounded-xl bg-[#0a1a3b] text-[#f3efe9] text-center font-semibold text-sm"
+                className="px-4 py-3 rounded-xl bg-[#0a1a3b] text-background text-center font-semibold text-sm"
               >
                 Start your page
               </a>

@@ -88,46 +88,54 @@ export default function OrdersPage() {
     const totalRevenue = orders.filter(o => o.status === "completed").reduce((s, o) => s + o.amount, 0);
 
     return (
-        <div className="space-y-5">
-            {/* Header */}
-            <div className="flex items-start justify-between gap-3">
-                <div>
-                    <h1 className="text-xl font-extrabold text-[#0a1a3b] tracking-tight">Orders</h1>
-                    <p className="text-[#0a1a3b]/40 text-xs mt-0.5">
-                        {counts.all} total · ₦{(totalRevenue / 1000).toFixed(0)}k earned
-                    </p>
+        <div className="flex flex-col">
+            {/* Page Header (Sub-header) */}
+            <div className="bg-[#0a1a3b] text-white pt-8 pb-32 px-4 md:px-6 lg:px-10 -mx-4 md:-mx-6 lg:-mx-10 -mt-4 md:-mt-6 lg:-mt-10 mb-0">
+                <div className="max-w-[1600px] mx-auto flex items-start justify-between gap-3">
+                    <div>
+                        <h1 className="text-xl font-extrabold tracking-tight">Orders</h1>
+                        <p className="text-white/60 text-xs mt-0.5">
+                            {counts.all} total · ₦{(totalRevenue / 1000).toFixed(0)}k earned
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            {/* Search */}
-            <div className="relative">
-                <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#0a1a3b]/40" />
-                <input
-                    type="text"
-                    placeholder="Search orders..."
-                    value={search}
-                    onChange={e => setSearch(e.target.value)}
-                    className="w-full pl-9 pr-4 py-2.5 bg-white border border-[#eae6df] rounded-xl text-sm text-[#0a1a3b] placeholder-[#0a1a3b]/40 focus:outline-none focus:ring-2 focus:ring-[#1b9cda]/20 focus:border-[#1b9cda] transition-all"
-                />
-            </div>
+            {/* Main Content Area (Overlapping Header) */}
+            <div className="relative z-10 -mt-24 space-y-5 max-w-[1600px] mx-auto w-full">
 
-            {/* Tabs */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 -mx-1 px-1">
-                {tabs.map(t => (
-                    <button
-                        key={t.value}
-                        onClick={() => setActiveTab(t.value)}
-                        className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border ${activeTab === t.value
-                            ? "bg-[#0a1a3b] text-white border-[#0a1a3b]"
-                            : "bg-white text-[#0a1a3b]/50 border-[#eae6df] hover:text-[#0a1a3b]"
-                            }`}
-                    >
-                        {t.label}
-                        <span className={`text-[10px] ${activeTab === t.value ? "text-white/60" : "text-[#0a1a3b]/30"}`}>
-                            {counts[t.value]}
-                        </span>
-                    </button>
-                ))}
+            {/* Search and Filters Card */}
+            <div className="bg-white border border-[#eae6df] rounded-2xl p-4 shadow-sm space-y-4">
+                {/* Search */}
+                <div className="relative">
+                    <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#0a1a3b]/40" />
+                    <input
+                        type="text"
+                        placeholder="Search orders..."
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
+                        className="w-full pl-9 pr-4 py-2.5 bg-[#f8f6f3] border border-[#eae6df] rounded-xl text-sm text-[#0a1a3b] placeholder-[#0a1a3b]/40 focus:outline-none focus:ring-2 focus:ring-[#1b9cda]/20 focus:border-[#1b9cda] transition-all"
+                    />
+                </div>
+
+                {/* Tabs */}
+                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 -mx-1 px-1">
+                    {tabs.map(t => (
+                        <button
+                            key={t.value}
+                            onClick={() => setActiveTab(t.value)}
+                            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border ${activeTab === t.value
+                                ? "bg-[#0a1a3b] text-white border-[#0a1a3b]"
+                                : "bg-[#f8f6f3] text-[#0a1a3b]/50 border-[#eae6df] hover:text-[#0a1a3b]"
+                                }`}
+                        >
+                            {t.label}
+                            <span className={`text-[10px] ${activeTab === t.value ? "text-white/60" : "text-[#0a1a3b]/30"}`}>
+                                {counts[t.value]}
+                            </span>
+                        </button>
+                    ))}
+                </div>
             </div>
 
             {/* Orders */}
@@ -285,6 +293,7 @@ export default function OrdersPage() {
                     {filtered.length} of {orders.length} orders
                 </p>
             )}
+            </div>
         </div>
     );
 }

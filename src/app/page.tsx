@@ -170,7 +170,7 @@ Would you like me to auto-send the bank details to top buyers?`;
   const [isYearlyBilling, setIsYearlyBilling] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#f3efe9] text-[#0a1a3b] font-sans selection:bg-[#1b9cda] selection:text-white">
+    <div className="min-h-screen bg-background text-[#0a1a3b] font-sans selection:bg-[#1b9cda] selection:text-white">
       <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
 
       <Hero 

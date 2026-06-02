@@ -4,7 +4,7 @@ import React from "react";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#f3efe9] border-t border-[#dedad3] py-16">
+    <footer className="bg-background border-t border-border-subtle py-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-12">
           {/* Left Col: brand focus */}
@@ -120,7 +120,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-[#dedad3] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono font-bold text-[#0a1a3b]/50">
+        <div className="border-t border-border-subtle pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono font-bold text-[#0a1a3b]/50">
           <span>© 2026 Trebo Technologies. Made with love in Lagos, Nigeria.</span>
         </div>
       </div>
