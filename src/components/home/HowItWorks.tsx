@@ -5,7 +5,7 @@ import { ChevronRight } from "lucide-react";
 
 export const HowItWorks: React.FC = () => {
   return (
-    <section id="how-it-works" className="macro-padding border-b border-[#dedad3] bg-[#f3efe9]">
+    <section id="how-it-works" className="macro-padding border-b border-border-subtle bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-xl mx-auto mb-16 md:mb-20">
           <span className="text-xs font-bold uppercase tracking-wider text-[#1b9cda]">
@@ -19,71 +19,79 @@ export const HowItWorks: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Step 1 */}
-          <div className="bg-white border border-[#dedad3] p-8 rounded-3xl relative text-left flex flex-col justify-between group hover:border-[#1b9cda] transition-all">
-            <div>
-              <span className="text-4xl font-extrabold text-[#1b9cda]/20 group-hover:text-[#1b9cda]/40 transition-colors block mb-4">
-                01
-              </span>
-              <h3 className="text-xl font-extrabold text-[#0a1a3b] mb-3">
-                Sign Up Free
-              </h3>
-              <p className="text-sm text-[#0a1a3b]/70 leading-relaxed mb-6">
-                Create your Trebo account in 30 seconds. Setup domain links or customizable store names with absolutely no credit card requirements.
-              </p>
-            </div>
-            <a
-              href="#customizer"
-              className="text-xs font-bold uppercase tracking-wide text-[#1b9cda] inline-flex items-center gap-1 group-hover:translate-x-1 transition-all"
-            >
-              Inquire store name
-              <ChevronRight size={14} />
-            </a>
-          </div>
+        <div className="relative">
+          {/* Dashed Connecting Line (Desktop - aligned horizontally with step numbers) */}
+          <div className="absolute top-[50px] left-[8%] right-[8%] h-0.5 border-t border-dashed border-[#1b9cda]/40 hidden md:block z-0" />
+          
+          {/* Dashed Connecting Line (Mobile - aligned vertically with step numbers) */}
+          <div className="absolute left-[44px] top-[40px] bottom-[40px] w-0.5 border-l border-dashed border-[#1b9cda]/40 md:hidden z-0" />
 
-          {/* Step 2 */}
-          <div className="bg-white border border-[#dedad3] p-8 rounded-3xl relative text-left flex flex-col justify-between group hover:border-[#1b9cda] transition-all">
-            <div>
-              <span className="text-4xl font-extrabold text-[#1b9cda]/20 group-hover:text-[#1b9cda]/40 transition-colors block mb-4">
-                02
-              </span>
-              <h3 className="text-xl font-extrabold text-[#0a1a3b] mb-3">
-                Build Your Store
-              </h3>
-              <p className="text-sm text-[#0a1a3b]/70 leading-relaxed mb-6">
-                Add your custom product catalog, toggle brand colors, and add WhatsApp contact settings. Real storefront previews adapt instantly.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+            {/* Step 1 */}
+            <div className="bg-white border border-border-subtle p-8 rounded-3xl relative text-left flex flex-col justify-between group hover:border-[#1b9cda] transition-all">
+              <div>
+                <span className="text-4xl font-extrabold text-[#1b9cda]/20 group-hover:text-[#1b9cda]/40 transition-colors block mb-4">
+                  01
+                </span>
+                <h3 className="text-xl font-extrabold text-[#0a1a3b] mb-3">
+                  Sign Up Free
+                </h3>
+                <p className="text-sm text-[#0a1a3b]/70 leading-relaxed mb-6">
+                  Create your Trebo account in 30 seconds. Setup domain links or customizable store names with absolutely no credit card requirements.
+                </p>
+              </div>
+              <a
+                href="#customizer"
+                className="text-xs font-bold uppercase tracking-wide text-[#1b9cda] inline-flex items-center gap-1 group-hover:translate-x-1 transition-all"
+              >
+                Inquire store name
+                <ChevronRight size={14} />
+              </a>
             </div>
-            <a
-              href="#customizer"
-              className="text-xs font-bold uppercase tracking-wide text-[#1b9cda] inline-flex items-center gap-1 group-hover:translate-x-1 transition-all"
-            >
-              Try customizer
-              <ChevronRight size={14} />
-            </a>
-          </div>
 
-          {/* Step 3 */}
-          <div className="bg-white border border-[#dedad3] p-8 rounded-3xl relative text-left flex flex-col justify-between group hover:border-[#1b9cda] transition-all">
-            <div>
-              <span className="text-4xl font-extrabold text-[#1b9cda]/20 group-hover:text-[#1b9cda]/40 transition-colors block mb-4">
-                03
-              </span>
-              <h3 className="text-xl font-extrabold text-[#0a1a3b] mb-3">
-                Share Your Link
-              </h3>
-              <p className="text-sm text-[#0a1a3b]/70 leading-relaxed mb-6">
-                Copy your customized Trebo link (`trebo.site/yourname`) to social banners, bios, and descriptions. Direct buyer requests open instantly.
-              </p>
+            {/* Step 2 */}
+            <div className="bg-white border border-border-subtle p-8 rounded-3xl relative text-left flex flex-col justify-between group hover:border-[#1b9cda] transition-all">
+              <div>
+                <span className="text-4xl font-extrabold text-[#1b9cda]/20 group-hover:text-[#1b9cda]/40 transition-colors block mb-4">
+                  02
+                </span>
+                <h3 className="text-xl font-extrabold text-[#0a1a3b] mb-3">
+                  Build Your Store
+                </h3>
+                <p className="text-sm text-[#0a1a3b]/70 leading-relaxed mb-6">
+                  Add your custom product catalog, toggle brand colors, and add WhatsApp contact settings. Real storefront previews adapt instantly.
+                </p>
+              </div>
+              <a
+                href="#customizer"
+                className="text-xs font-bold uppercase tracking-wide text-[#1b9cda] inline-flex items-center gap-1 group-hover:translate-x-1 transition-all"
+              >
+                Try customizer
+                <ChevronRight size={14} />
+              </a>
             </div>
-            <a
-              href="#customizer"
-              className="text-xs font-bold uppercase tracking-wide text-[#1b9cda] inline-flex items-center gap-1 group-hover:translate-x-1 transition-all"
-            >
-              Launch dashboard
-              <ChevronRight size={14} />
-            </a>
+
+            {/* Step 3 */}
+            <div className="bg-white border border-border-subtle p-8 rounded-3xl relative text-left flex flex-col justify-between group hover:border-[#1b9cda] transition-all">
+              <div>
+                <span className="text-4xl font-extrabold text-[#1b9cda]/20 group-hover:text-[#1b9cda]/40 transition-colors block mb-4">
+                  03
+                </span>
+                <h3 className="text-xl font-extrabold text-[#0a1a3b] mb-3">
+                  Share Your Link
+                </h3>
+                <p className="text-sm text-[#0a1a3b]/70 leading-relaxed mb-6">
+                  Copy your customized Trebo link (`trebo.site/yourname`) to social banners, bios, and descriptions. Direct buyer requests open instantly.
+                </p>
+              </div>
+              <a
+                href="#customizer"
+                className="text-xs font-bold uppercase tracking-wide text-[#1b9cda] inline-flex items-center gap-1 group-hover:translate-x-1 transition-all"
+              >
+                Launch dashboard
+                <ChevronRight size={14} />
+              </a>
+            </div>
           </div>
         </div>
 

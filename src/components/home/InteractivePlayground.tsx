@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import { PhoneMockup } from "../ui/PhoneMockup";
 import { 
   TrendingUp, 
   ShoppingBag, 
@@ -80,7 +80,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
   setCheckoutModalOpen,
 }) => {
   return (
-    <section id="customizer" className="macro-padding relative border-b border-[#dedad3] bg-[#f3efe9]">
+    <section id="customizer" className="macro-padding relative border-b border-border-subtle bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-[#1b9cda] bg-[#1b9cda]/10 px-3 py-1 rounded-full">
@@ -95,7 +95,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
         </div>
 
         {/* Setup / Workspace Navigator Tab Headers */}
-        <div className="flex justify-center border-b border-[#dedad3] mb-12 max-w-sm mx-auto">
+        <div className="flex justify-center border-b border-border-subtle mb-12 max-w-sm mx-auto">
           <button
             onClick={() => setActiveWorkspaceTab("onboarding")}
             className={`flex-1 pb-4 text-xs font-bold uppercase tracking-wider border-b-2 transition-all ${
@@ -135,7 +135,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
               {/* Onboarding tab contents */}
               {activeWorkspaceTab === "onboarding" && (
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between pb-4 border-b border-[#dedad3]">
+                  <div className="flex items-center justify-between pb-4 border-b border-border-subtle">
                     <div>
                       <div className="text-[10px] font-mono text-[#0a1a3b]/50 uppercase tracking-widest">
                         Onboarding Step
@@ -144,7 +144,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                         Step 2 of 3: Design your presence
                       </h3>
                     </div>
-                    <span className="text-xs font-bold px-2.5 py-1 rounded bg-[#ebe7e0] text-[#0a1a3b]">
+                    <span className="text-xs font-bold px-2.5 py-1 rounded bg-surface text-[#0a1a3b]">
                       Active Setup
                     </span>
                   </div>
@@ -159,7 +159,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                         type="text"
                         value={businessName}
                         onChange={(e) => setBusinessName(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl border border-[#dedad3] bg-[#f3efe9] text-[#0a1a3b] font-medium text-sm focus:outline-none focus:border-[#1b9cda] focus:ring-1 focus:ring-[#1b9cda] transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-border-subtle bg-background text-[#0a1a3b] font-medium text-sm focus:outline-none focus:border-[#1b9cda] focus:ring-1 focus:ring-[#1b9cda] transition-all"
                         placeholder="e.g., Adaeze Fashion"
                       />
                     </div>
@@ -173,7 +173,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                         type="text"
                         value={whatsappNumber}
                         onChange={(e) => setWhatsappNumber(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl border border-[#dedad3] bg-[#f3efe9] text-[#0a1a3b] font-medium text-sm focus:outline-none focus:border-[#1b9cda] focus:ring-1 focus:ring-[#1b9cda] transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-border-subtle bg-background text-[#0a1a3b] font-medium text-sm focus:outline-none focus:border-[#1b9cda] focus:ring-1 focus:ring-[#1b9cda] transition-all"
                         placeholder="e.g., +234 801 234 5678"
                       />
                     </div>
@@ -188,7 +188,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                       <select
                         value={customCategory}
                         onChange={(e) => handleCategoryChange(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl border border-[#dedad3] bg-[#f3efe9] text-[#0a1a3b] font-medium text-sm focus:outline-none focus:border-[#1b9cda] focus:ring-2 focus:ring-[#1b9cda] transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-border-subtle bg-background text-[#0a1a3b] font-medium text-sm focus:outline-none focus:border-[#1b9cda] focus:ring-2 focus:ring-[#1b9cda] transition-all"
                       >
                         <option value="Fashion">Fashion & Clothing</option>
                         <option value="Food">Food & Catering</option>
@@ -203,12 +203,12 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                       <label className="block text-xs font-bold uppercase text-[#0a1a3b]/70 mb-2">
                         Verification Seal
                       </label>
-                      <div className="flex items-center gap-3 px-4 py-3 border border-[#dedad3] rounded-xl bg-[#f3efe9]">
+                      <div className="flex items-center gap-3 px-4 py-3 border border-border-subtle rounded-xl bg-background">
                         <input
                           type="checkbox"
                           checked={isVerified}
                           onChange={(e) => setIsVerified(e.target.checked)}
-                          className="w-4.5 h-4.5 rounded text-[#1b9cda] focus:ring-[#1b9cda] border-[#dedad3]"
+                          className="w-4.5 h-4.5 rounded text-[#1b9cda] focus:ring-[#1b9cda] border-border-subtle"
                           id="verify-seal"
                         />
                         <label htmlFor="verify-seal" className="text-xs font-semibold text-[#0a1a3b] select-none cursor-pointer">
@@ -252,8 +252,8 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                   </div>
 
                   {/* Quick navigation suggestion */}
-                  <div className="bg-[#f3efe9] border border-[#dedad3] rounded-2xl p-4 flex items-start gap-3">
-                    <div className="p-2 rounded-lg bg-[#dedad3] text-[#0a1a3b]">
+                  <div className="bg-background border border-border-subtle rounded-2xl p-4 flex items-start gap-3">
+                    <div className="p-2 rounded-lg bg-border-subtle text-[#0a1a3b]">
                       <Info size={16} />
                     </div>
                     <div className="text-xs text-[#0a1a3b]/80">
@@ -275,7 +275,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
               {/* Dashboard tab contents */}
               {activeWorkspaceTab === "dashboard" && (
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between pb-4 border-b border-[#dedad3]">
+                  <div className="flex items-center justify-between pb-4 border-b border-border-subtle">
                     <div>
                       <div className="text-[10px] font-mono text-[#0a1a3b]/50 uppercase tracking-widest">
                         Trebo Console
@@ -290,7 +290,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                   </div>
 
                   {/* Sub navigation inside Dashboard mockup */}
-                  <div className="flex bg-[#ebe7e0] rounded-xl p-1 gap-1">
+                  <div className="flex bg-surface rounded-xl p-1 gap-1">
                     {[
                       { id: "metrics", label: "Dashboard", icon: TrendingUp },
                       { id: "products", label: "Products", icon: ShoppingBag },
@@ -319,7 +319,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                   {activeDashboardSubTab === "metrics" && (
                     <div className="space-y-4">
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <div className="p-4 bg-[#f3efe9] border border-[#dedad3] rounded-xl text-left">
+                        <div className="p-4 bg-background border border-border-subtle rounded-xl text-left">
                           <span className="text-[10px] font-mono text-[#0a1a3b]/60 uppercase tracking-wide">
                             Unique Views
                           </span>
@@ -327,7 +327,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                           <span className="text-[10px] text-[#1b9cda] font-medium">+12% this week</span>
                         </div>
 
-                        <div className="p-4 bg-[#f3efe9] border border-[#dedad3] rounded-xl text-left">
+                        <div className="p-4 bg-background border border-border-subtle rounded-xl text-left">
                           <span className="text-[10px] font-mono text-[#0a1a3b]/60 uppercase tracking-wide">
                             WhatsApp Clicks
                           </span>
@@ -335,7 +335,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                           <span className="text-[10px] text-[#1b9cda] font-medium">8.3% convert</span>
                         </div>
 
-                        <div className="p-4 bg-[#f3efe9] border border-[#dedad3] rounded-xl text-left">
+                        <div className="p-4 bg-background border border-border-subtle rounded-xl text-left">
                           <span className="text-[10px] font-mono text-[#0a1a3b]/60 uppercase tracking-wide">
                             Serious Inquiries
                           </span>
@@ -343,7 +343,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                           <span className="text-[10px] text-emerald-600 font-medium">No ghost buyers</span>
                         </div>
 
-                        <div className="p-4 bg-[#f3efe9] border border-[#dedad3] rounded-xl text-left">
+                        <div className="p-4 bg-background border border-border-subtle rounded-xl text-left">
                           <span className="text-[10px] font-mono text-[#0a1a3b]/60 uppercase tracking-wide">
                             Potential Sales
                           </span>
@@ -353,8 +353,8 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                       </div>
 
                       {/* Order overview mockup */}
-                      <div className="border border-[#dedad3] rounded-2xl overflow-hidden bg-[#f3efe9]">
-                        <div className="p-4 bg-[#ebe7e0] border-b border-[#dedad3] flex justify-between items-center">
+                      <div className="border border-border-subtle rounded-2xl overflow-hidden bg-background">
+                        <div className="p-4 bg-surface border-b border-border-subtle flex justify-between items-center">
                           <h4 className="font-extrabold text-[#0a1a3b] text-sm">
                             Recent Inquiry Queue
                           </h4>
@@ -363,7 +363,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                           </span>
                         </div>
 
-                        <div className="divide-y divide-[#dedad3]">
+                        <div className="divide-y divide-border-subtle">
                           {[
                             { customer: "Folake", item: activeProducts[0]?.name || "Ankara Gown", status: "Inquiry on size Medium", time: "10 mins ago" },
                             { customer: "Emeka O.", item: activeProducts[1]?.name || "Luxury Kaftan", status: "Delivery check (Abuja)", time: "2 hours ago" },
@@ -392,7 +392,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                   {activeDashboardSubTab === "products" && (
                     <div className="space-y-4">
                       {/* Inline Addition Form */}
-                      <form onSubmit={handleAddProduct} className="bg-[#f3efe9] p-4 rounded-2xl border border-[#dedad3] space-y-3 text-left">
+                      <form onSubmit={handleAddProduct} className="bg-background p-4 rounded-2xl border border-border-subtle space-y-3 text-left">
                         <h4 className="font-extrabold text-[#0a1a3b] text-sm">
                           Add a Product to {customCategory}
                         </h4>
@@ -402,14 +402,14 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                             value={newProductName}
                             onChange={(e) => setNewProductName(e.target.value)}
                             placeholder="Product Name"
-                            className="px-3 py-2 rounded-lg bg-white border border-[#dedad3] text-xs font-semibold focus:outline-none focus:border-[#1b9cda]"
+                            className="px-3 py-2 rounded-lg bg-white border border-border-subtle text-xs font-semibold focus:outline-none focus:border-[#1b9cda]"
                           />
                           <input
                             type="number"
                             value={newProductPrice}
                             onChange={(e) => setNewProductPrice(e.target.value)}
                             placeholder="Price in Naira (e.g., 12000)"
-                            className="px-3 py-2 rounded-lg bg-white border border-[#dedad3] text-xs font-semibold focus:outline-none focus:border-[#1b9cda]"
+                            className="px-3 py-2 rounded-lg bg-white border border-border-subtle text-xs font-semibold focus:outline-none focus:border-[#1b9cda]"
                           />
                         </div>
                         <button
@@ -422,17 +422,17 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                       </form>
 
                       {/* Table list of customizer products */}
-                      <div className="border border-[#dedad3] rounded-2xl overflow-hidden bg-[#f3efe9] max-h-[220px] overflow-y-auto">
+                      <div className="border border-border-subtle rounded-2xl overflow-hidden bg-background max-h-[220px] overflow-y-auto">
                         <table className="w-full text-xs text-left">
                           <thead>
-                            <tr className="bg-[#ebe7e0] text-[#0a1a3b] font-bold">
+                            <tr className="bg-surface text-[#0a1a3b] font-bold">
                               <th className="p-3">Product Name</th>
                               <th className="p-3">Category</th>
                               <th className="p-3">Price</th>
                               <th className="p-3 text-right">Draft Status</th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-[#dedad3]">
+                          <tbody className="divide-y divide-border-subtle">
                             {activeProducts.map((p) => (
                               <tr key={p.id} className="hover:bg-white transition-all font-medium">
                                 <td className="p-3">{p.name}</td>
@@ -456,7 +456,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                   {/* Analytics mock with pure mathematical SVGs for performance */}
                   {activeDashboardSubTab === "analytics" && (
                     <div className="space-y-4">
-                      <div className="bg-[#f3efe9] border border-[#dedad3] rounded-2xl p-4 text-left">
+                      <div className="bg-background border border-border-subtle rounded-2xl p-4 text-left">
                         <h4 className="font-extrabold text-[#0a1a3b] text-sm mb-1">
                           WhatsApp Redirect Analytics
                         </h4>
@@ -467,9 +467,9 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                         <div className="relative w-full h-[140px] mt-4">
                           {/* Smooth grid lines */}
                           <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-40">
-                            <hr className="border-t border-dashed border-[#dedad3] w-full" />
-                            <hr className="border-t border-dashed border-[#dedad3] w-full" />
-                            <hr className="border-t border-dashed border-[#dedad3] w-full" />
+                            <hr className="border-t border-dashed border-border-subtle w-full" />
+                            <hr className="border-t border-dashed border-border-subtle w-full" />
+                            <hr className="border-t border-dashed border-border-subtle w-full" />
                           </div>
 
                           {/* Simulated SVG Graph */}
@@ -493,7 +493,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                             />
                           </svg>
 
-                          <div className="absolute top-2 left-6 bg-white border border-[#dedad3] rounded-lg p-2 text-[10px] font-mono leading-none shadow-sm font-semibold text-[#0a1a3b]">
+                          <div className="absolute top-2 left-6 bg-white border border-border-subtle rounded-lg p-2 text-[10px] font-mono leading-none shadow-sm font-semibold text-[#0a1a3b]">
                             <span>Peak: 80 clickthroughs (Mon)</span>
                           </div>
                         </div>
@@ -514,7 +514,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                   {/* AI Chat assistant simulator of the WhatsApp auto bot */}
                   {activeDashboardSubTab === "assistant" && (
                     <div className="space-y-4">
-                      <div className="bg-[#f3efe9] border border-[#dedad3] rounded-2xl p-4 flex flex-col h-[280px]">
+                      <div className="bg-background border border-border-subtle rounded-2xl p-4 flex flex-col h-[280px]">
                         {/* Chat Messages Log scroll area */}
                         <div className="flex-1 overflow-y-auto mb-4 space-y-3.5 pr-1 text-left">
                           {aiChat.map((msg) => (
@@ -528,7 +528,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                                 className={`p-3 rounded-2xl text-xs font-medium leading-relaxed ${
                                   msg.sender === "user"
                                     ? "bg-[#0a1a3b] text-white rounded-tr-none"
-                                    : "bg-white border border-[#dedad3] text-[#0a1a3b] rounded-tl-none"
+                                    : "bg-white border border-border-subtle text-[#0a1a3b] rounded-tl-none"
                                 }`}
                               >
                                 {msg.text}
@@ -544,13 +544,13 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                         <div className="flex flex-wrap gap-2 mb-3">
                           <button
                             onClick={() => executeAiCommand("Follow up with ghost buyers")}
-                            className="px-2.5 py-1 text-[10px] bg-[#ebe7e0] hover:bg-[#dedad3] font-bold rounded-full transition-all text-[#0a1a3b]"
+                            className="px-2.5 py-1 text-[10px] bg-surface hover:bg-border-subtle font-bold rounded-full transition-all text-[#0a1a3b]"
                           >
                             💬 Follow-up Bot
                           </button>
                           <button
                             onClick={() => executeAiCommand("Give me my daily shop summary")}
-                            className="px-2.5 py-1 text-[10px] bg-[#ebe7e0] hover:bg-[#dedad3] font-bold rounded-full transition-all text-[#0a1a3b]"
+                            className="px-2.5 py-1 text-[10px] bg-surface hover:bg-border-subtle font-bold rounded-full transition-all text-[#0a1a3b]"
                           >
                             📊 Daily Summary
                           </button>
@@ -564,7 +564,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                             onChange={(e) => setCustomAiText(e.target.value)}
                             disabled={!aiInputEnabled}
                             placeholder="Type commands to Trebo AI..."
-                            className="flex-1 px-4 py-3 text-xs bg-white text-[#0a1a3b] font-semibold border border-[#dedad3] rounded-xl focus:outline-none focus:border-[#1b9cda] disabled:opacity-50"
+                            className="flex-1 px-4 py-3 text-xs bg-white text-[#0a1a3b] font-semibold border border-border-subtle rounded-xl focus:outline-none focus:border-[#1b9cda] disabled:opacity-50"
                           />
                           <button
                             type="submit"
@@ -583,7 +583,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
               {/* Direct Store View tab content */}
               {activeWorkspaceTab === "store" && (
                 <div className="space-y-6 text-left">
-                  <div className="pb-4 border-b border-[#dedad3]">
+                  <div className="pb-4 border-b border-border-subtle">
                     <div className="text-[10px] font-mono text-[#0a1a3b]/50 uppercase tracking-widest">
                       Trebo Preview
                     </div>
@@ -592,7 +592,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                     </h3>
                   </div>
 
-                  <div className="p-6 bg-[#ebe7e0] border border-[#dedad3] rounded-2xl flex items-center justify-between">
+                  <div className="p-6 bg-surface border border-border-subtle rounded-2xl flex items-center justify-between">
                     <div>
                       <span className="text-[10px] font-mono text-[#0a1a3b]/50 uppercase">
                         Permanent QR Code
@@ -606,7 +606,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                     </div>
 
                     {/* Mock QR graphic */}
-                    <div className="w-16 h-16 bg-white p-1 rounded-lg border border-[#dedad3] flex flex-wrap gap-0.5 justify-center items-center">
+                    <div className="w-16 h-16 bg-white p-1 rounded-lg border border-border-subtle flex flex-wrap gap-0.5 justify-center items-center">
                       <div className="w-3.5 h-3.5 bg-[#0a1a3b]" />
                       <div className="w-3.5 h-3.5 bg-transparent" />
                       <div className="w-3.5 h-3.5 bg-[#0a1a3b]" />
@@ -632,7 +632,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                           navigator.clipboard.writeText(`https://gettrebo.com/${businessName.toLowerCase().replace(/\s+/g, "")}`);
                           alert("Link copied! You can share it anywhere.");
                         }}
-                        className="px-5 py-3 rounded-xl border border-[#dedad3] hover:bg-[#ebe7e0] text-[#0a1a3b] font-extrabold text-xs uppercase tracking-wide flex items-center gap-1.5 transition-all"
+                        className="px-5 py-3 rounded-xl border border-border-subtle hover:bg-surface text-[#0a1a3b] font-extrabold text-xs uppercase tracking-wide flex items-center gap-1.5 transition-all"
                       >
                         <Share2 size={14} />
                         Copy Link
@@ -651,7 +651,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
             </div>
 
             {/* Step indicator feedback info block */}
-            <div className="mt-8 pt-6 border-t border-[#dedad3] text-left">
+            <div className="mt-8 pt-6 border-t border-border-subtle text-left">
               <p className="text-xs font-mono font-bold text-[#0a1a3b]/50">
                 ✦ Click any workspace tab above: onboarding controls are fully live and responsive.
               </p>
@@ -659,30 +659,17 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
           </div>
 
           {/* RIGHT WORKSPACE - THE SMARTPHONE VIEW (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center border-t lg:border-t-0 lg:border-l border-[#dedad3] pt-8 lg:pt-0 lg:pl-12">
+          <div className="lg:col-span-5 flex flex-col items-center justify-center border-t lg:border-t-0 lg:border-l border-border-subtle pt-8 lg:pt-0 lg:pl-12">
             <span className="text-xs font-mono font-bold text-[#0a1a3b]/50 mb-4 block uppercase tracking-wider">
               Live Storefront Screen
             </span>
 
             {/* Smartphone mock container */}
-            <div className="w-full max-w-[320px] bg-zinc-900 rounded-[36px] p-3 shadow-2xl border border-zinc-800 relative">
-              {/* Speaker pill top notch */}
-              <div className="absolute top-6 left-1/2 -translate-x-1/2 w-24 h-3 rounded-full bg-zinc-950 z-20 flex items-center justify-center" />
-
-              {/* Screen boundary */}
-              <div className="rounded-[24px] bg-[#f3efe9] overflow-hidden border border-zinc-950 relative aspect-[9/18] flex flex-col">
-                {/* Status Bar */}
-                <div className="h-8 pt-2.5 px-5 flex justify-between items-center text-[9px] font-mono text-[#0a1a3b]/60 bg-[#ebe7e0] border-b border-[#dedad3]">
-                  <span>08:42</span>
-                  <div className="flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#1b9cda]" />
-                    <span>4G</span>
-                  </div>
-                </div>
-
+            <div className="w-full max-w-[280px]">
+              <PhoneMockup>
                 {/* Simulated URL bar */}
-                <div className="px-3 py-1.5 bg-white border-b border-[#dedad3] flex items-center gap-1">
-                  <div className="text-[9px] font-mono bg-[#f3efe9] px-2 py-0.5 rounded text-[#0a1a3b]/70 flex-1 overflow-hidden whitespace-nowrap text-left">
+                <div className="px-3 py-1.5 bg-white border-b border-border-subtle flex items-center gap-1">
+                  <div className="text-[9px] font-mono bg-background px-2 py-0.5 rounded text-[#0a1a3b]/70 flex-1 overflow-hidden whitespace-nowrap text-left">
                     <span>trebo.site/</span>
                     <span className="font-extrabold text-[#1a5f7a]">
                       {businessName.toLowerCase().replace(/\s+/g, "")}
@@ -695,7 +682,7 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                   {/* Brand Banner Profile summary */}
                   <div
                     style={{ borderTop: `4px solid ${brandColor}` }}
-                    className="text-center bg-white rounded-xl p-3 border border-[#dedad3] shadow-sm"
+                    className="text-center bg-white rounded-xl p-3 border border-border-subtle shadow-sm"
                   >
                     <div
                       style={{ backgroundColor: brandColor }}
@@ -731,11 +718,10 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                           style={{ borderColor: brandColor + "20" }}
                           className="bg-white rounded-lg p-2 flex flex-col justify-between border hover:scale-[1.02] transition-all relative"
                         >
-                          <div className="aspect-square bg-[#ebe7e0] rounded overflow-hidden mb-1 relative">
-                            <Image
+                          <div className="aspect-square bg-surface rounded overflow-hidden mb-1 relative">
+                            <img
                               src={p.image}
                               alt={p.name}
-                              fill
                               className="object-cover"
                             />
                           </div>
@@ -768,11 +754,11 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                 </div>
 
                 {/* Simulated Smart Footer WhatsApp integration badge */}
-                <div className="bg-white border-t border-[#dedad3] p-2 flex items-center justify-center gap-1.5 text-[8px] font-bold text-[#0a1a3b]/60">
+                <div className="bg-white border-t border-border-subtle p-2 flex items-center justify-center gap-1.5 text-[8px] font-bold text-[#0a1a3b]/60">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
                   <span>WhatsApp Order Integration Active ({whatsappNumber})</span>
                 </div>
-              </div>
+              </PhoneMockup>
             </div>
           </div>
         </div>

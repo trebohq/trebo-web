@@ -31,7 +31,7 @@ const faqs = [
 
 export const FAQ: React.FC<FAQProps> = ({ activeFaq, toggleFaq, executeAiCommand }) => {
   return (
-    <section id="faq" className="macro-padding border-b border-[#dedad3] bg-[#ebe7e0]/50">
+    <section id="faq" className="macro-padding border-b border-border-subtle bg-surface/50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left FAQ side description */}
@@ -46,7 +46,7 @@ export const FAQ: React.FC<FAQProps> = ({ activeFaq, toggleFaq, executeAiCommand
               Everything you need to know about setting up payment redirects, domain configurations, and AI assistants.
             </p>
 
-            <div className="p-5 border border-[#dedad3] rounded-2xl bg-white/70 max-w-[340px]">
+            <div className="p-5 border border-border-subtle rounded-2xl bg-white/70 max-w-[340px]">
               <h4 className="font-extrabold text-sm text-[#0a1a3b] mb-1.5 flex items-center gap-1.5">
                 <HelpCircle size={16} className="text-[#1b9cda]" />
                 Need direct assistance?
@@ -75,16 +75,16 @@ export const FAQ: React.FC<FAQProps> = ({ activeFaq, toggleFaq, executeAiCommand
             {faqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-[#dedad3] rounded-2xl overflow-hidden transition-all duration-300"
+                className="bg-white border border-border-subtle rounded-2xl overflow-hidden transition-all duration-300"
               >
                 <button
                   onClick={() => toggleFaq(idx)}
-                  className="w-full p-6 text-left flex items-center justify-between text-[#0a1a3b] hover:bg-[#f3efe9]/30 focus:outline-none transition-all"
+                  className="w-full p-6 text-left flex items-center justify-between text-[#0a1a3b] hover:bg-background/30 focus:outline-none transition-all"
                 >
                   <span className="font-extrabold text-sm md:text-base leading-tight">
                     {faq.q}
                   </span>
-                  <span className="p-1 rounded-full bg-[#ebe7e0] text-[#0a1a3b] shrink-0 ml-4 transition-transform duration-300">
+                  <span className="p-1 rounded-full bg-surface text-[#0a1a3b] shrink-0 ml-4 transition-transform duration-300">
                     {activeFaq === idx ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
                   </span>
                 </button>
@@ -97,7 +97,7 @@ export const FAQ: React.FC<FAQProps> = ({ activeFaq, toggleFaq, executeAiCommand
                       exit={{ height: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 text-xs md:text-sm text-[#0a1a3b]/75 leading-relaxed bg-[#f3efe9]/10 pt-1">
+                      <div className="px-6 pb-6 text-xs md:text-sm text-[#0a1a3b]/75 leading-relaxed bg-background/10 pt-1">
                         {faq.a}
                       </div>
                     </motion.div>

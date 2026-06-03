@@ -22,7 +22,7 @@ const testimonials = [
 
 export const Testimonials: React.FC = () => {
   return (
-    <section className="macro-padding border-b border-[#dedad3] bg-[#f3efe9]">
+    <section className="macro-padding border-b border-border-subtle bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-xl mx-auto mb-16 md:mb-20">
           <span className="text-xs font-bold uppercase tracking-wider text-[#1b9cda]">
@@ -35,31 +35,39 @@ export const Testimonials: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testi, idx) => (
-            <div
-              key={idx}
-              className="bg-white border border-[#dedad3] p-8 rounded-3xl relative text-left flex flex-col justify-between shadow-sm hover:shadow-md transition-all"
-            >
-              <div>
-                <span className="text-3xl font-serif text-[#1b9cda] opacity-40 select-none block mb-4">
-                  “
-                </span>
-                <p className="text-sm text-[#0a1a3b]/85 leading-relaxed italic mb-6">
-                  {testi.text}
-                </p>
+        {/* Vertical Auto-scrolling Testimonials Loop */}
+        <div className="relative h-[420px] overflow-hidden max-w-2xl mx-auto px-4">
+          {/* Top & Bottom Fade Gradients */}
+          <div className="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-white via-white/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none" />
+
+          {/* Scrolling Container */}
+          <div className="flex flex-col gap-5 animate-marquee-vertical py-12">
+            {[...testimonials, ...testimonials].map((testi, idx) => (
+              <div
+                key={idx}
+                className="bg-white border border-border-subtle p-6 rounded-3xl relative text-left flex flex-col justify-between shadow-sm hover:shadow-md transition-all shrink-0"
+              >
+                <div>
+                  <span className="text-3xl font-serif text-[#1b9cda] opacity-40 select-none block mb-2 leading-none">
+                    “
+                  </span>
+                  <p className="text-xs sm:text-sm text-[#0a1a3b]/85 leading-relaxed italic mb-5">
+                    {testi.text}
+                  </p>
+                </div>
+                <div>
+                  <div className="h-[1px] bg-border-subtle mb-3" />
+                  <h4 className="font-extrabold text-[#0a1a3b] text-sm">
+                    {testi.name}
+                  </h4>
+                  <p className="text-xs text-[#0a1a3b]/60 font-medium">
+                    {testi.store}
+                  </p>
+                </div>
               </div>
-              <div>
-                <div className="h-[1px] bg-[#dedad3] mb-4" />
-                <h4 className="font-extrabold text-[#0a1a3b] text-sm">
-                  {testi.name}
-                </h4>
-                <p className="text-xs text-[#0a1a3b]/60 font-medium">
-                  {testi.store}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

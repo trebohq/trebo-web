@@ -38,9 +38,9 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             initial={{ scale: 0.95, y: 15, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 15, opacity: 0 }}
-            className="bg-white rounded-3xl p-6.5 max-w-sm w-full border border-[#dedad3] shadow-2xl relative z-10 text-left space-y-4"
+            className="bg-white rounded-3xl p-6.5 max-w-sm w-full border border-border-subtle shadow-2xl relative z-10 text-left space-y-4"
           >
-            <div className="flex items-center justify-between pb-3 border-b border-[#dedad3]">
+            <div className="flex items-center justify-between pb-3 border-b border-border-subtle">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse" />
                 <span className="text-[10px] font-mono uppercase text-[#0a1a3b]/60 font-bold">
@@ -49,7 +49,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               </div>
               <button
                 onClick={() => setCheckoutModalOpen(false)}
-                className="p-1 rounded-full hover:bg-[#ebe7e0] text-[#0a1a3b] transition-all"
+                className="p-1 rounded-full hover:bg-surface text-[#0a1a3b] transition-all"
               >
                 <X size={16} />
               </button>
@@ -68,7 +68,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             </div>
 
             {/* Mock WhatsApp message block */}
-            <div className="bg-[#e5ddd5] p-3 rounded-2xl border border-[#dedad3] relative overflow-hidden">
+            <div className="bg-[#e5ddd5] p-3 rounded-2xl border border-border-subtle relative overflow-hidden">
               <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#128c7e_15%,transparent_16%)] bg-[length:14px_14px] pointer-events-none" />
               <div className="bg-[#dcf8c6] p-3 rounded-xl border border-emerald-200 text-xs font-semibold leading-relaxed text-[#0a1a3b] relative z-10">
                 <span>
