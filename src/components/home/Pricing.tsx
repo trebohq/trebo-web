@@ -3,6 +3,96 @@
 import React from "react";
 import { CheckCircle2, Sparkles } from "lucide-react";
 
+interface PricingPlanFeature {
+  text: string;
+  icon: "check" | "sparkles";
+  highlight?: boolean;
+  iconColor?: string;
+}
+
+interface PricingPlan {
+  id: string;
+  badge: string;
+  name: string;
+  description: string;
+  monthlyPrice: string;
+  yearlyPrice: string;
+  features: PricingPlanFeature[];
+  buttonText: string;
+  buttonHref?: string;
+  isRecommended?: boolean;
+  action?: "launch-pro";
+}
+
+const PRICING_PLANS: PricingPlan[] = [
+  {
+    id: "starter",
+    badge: "Starter Plan",
+    name: "Starter",
+    description:
+      "Perfect for new micro-businesses looking to establish visual trust.",
+    monthlyPrice: "1,500",
+    yearlyPrice: "1,200",
+    features: [
+      { text: "trebo.site/yourname", icon: "check" },
+      { text: "Up to 20 products", icon: "check" },
+      { text: "Customer review and logs", icon: "check" },
+      { text: "WhatsApp catalog order CTA", icon: "check" },
+      { text: "Basic brand configuration", icon: "check" },
+    ],
+    buttonText: "Select Starter",
+    buttonHref: "#customizer",
+  },
+  {
+    id: "pro",
+    badge: "Premium Bot Integration",
+    name: "Pro Plan",
+    description:
+      "Our most popular plan tailored for serious local store operators.",
+    monthlyPrice: "2,500",
+    yearlyPrice: "2,000",
+    features: [
+      {
+        text: "Includes AI WhatsApp Assistant",
+        icon: "sparkles",
+        highlight: true,
+      },
+      { text: "Everything in Starter plan", icon: "check" },
+      { text: "store.trebo.com subdomain redirection", icon: "check" },
+      { text: "Up to 300 products in directory", icon: "check" },
+      { text: "Trebo merchant directory listing", icon: "check" },
+      { text: "Review request via WhatsApp AI", icon: "check" },
+      { text: "Auto-follow up message bot", icon: "check" },
+    ],
+    buttonText: "Launch Pro Page",
+    isRecommended: true,
+    action: "launch-pro",
+  },
+  {
+    id: "premium",
+    badge: "Complete Branding Identity",
+    name: "Premium",
+    description:
+      "For established local outlets seeking payment capabilities and domains.",
+    monthlyPrice: "5,000",
+    yearlyPrice: "4,000",
+    features: [
+      {
+        text: "Verification Badge displayed",
+        icon: "check",
+        iconColor: "text-[#0a1a3b]",
+      },
+      { text: "Everything in Pro plan", icon: "check" },
+      { text: "Direct online payment integration", icon: "check" },
+      { text: "Free custom .com.ng domain", icon: "check" },
+      { text: "Advanced review analytics", icon: "check" },
+      { text: "Advanced meta store analytics dashboard", icon: "check" },
+    ],
+    buttonText: "Select Premium",
+    buttonHref: "#customizer",
+  },
+];
+
 interface PricingProps {
   isYearlyBilling: boolean;
   setIsYearlyBilling: (yearly: boolean) => void;
@@ -14,8 +104,21 @@ export const Pricing: React.FC<PricingProps> = ({
   setIsYearlyBilling,
   setActiveWorkspaceTab,
 }) => {
+  const handleAction = (plan: PricingPlan) => {
+    if (plan.action === "launch-pro") {
+      const targetElement = document.getElementById("customizer");
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+        setActiveWorkspaceTab("dashboard");
+      }
+    }
+  };
+
   return (
-    <section id="pricing" className="macro-padding border-b border-border-subtle bg-surface/50">
+    <section
+      id="pricing"
+      className="macro-padding border-b border-border-subtle bg-surface/50"
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-[#1b9cda] bg-[#1b9cda]/10 px-3 py-1 rounded-full">
@@ -27,12 +130,15 @@ export const Pricing: React.FC<PricingProps> = ({
             with your business.
           </h2>
           <p className="text-base text-[#0a1a3b]/70 mb-8">
-            Choose a plan that fits your current hustle. Upgrade as you grow of your scale. No hidden transaction charges.
+            Choose a plan that fits your current hustle. Upgrade as you grow of
+            your scale. No hidden transaction charges.
           </p>
 
           {/* Monthly / Annual Toggle switch */}
           <div className="flex items-center justify-center gap-3">
-            <span className={`text-xs font-bold uppercase tracking-wider ${!isYearlyBilling ? "text-[#0a1a3b]" : "text-[#0a1a3b]/50"}`}>
+            <span
+              className={`text-xs font-bold uppercase tracking-wider ${!isYearlyBilling ? "text-[#0a1a3b]" : "text-[#0a1a3b]/50"}`}
+            >
               Monthly billing
             </span>
             <button
@@ -45,188 +151,103 @@ export const Pricing: React.FC<PricingProps> = ({
                 }`}
               />
             </button>
-            <span className={`text-xs font-bold uppercase tracking-wider ${isYearlyBilling ? "text-[#0a1a3b]" : "text-[#0a1a3b]/50"}`}>
+            <span
+              className={`text-xs font-bold uppercase tracking-wider ${isYearlyBilling ? "text-[#0a1a3b]" : "text-[#0a1a3b]/50"}`}
+            >
               Yearly plan (Save 20%)
             </span>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-          {/* Plan 1 - Starter */}
-          <div className="bg-white border border-border-subtle rounded-3xl p-8 flex flex-col justify-between text-left">
-            <div>
-              <span className="text-xs font-bold text-[#0a1a3b]/50 uppercase tracking-widest block mb-2">
-                Starter Plan
-              </span>
-              <h3 className="text-xl font-extrabold text-[#0a1a3b]">Starter</h3>
-              <p className="text-xs text-[#0a1a3b]/60 mt-1 mb-6">
-                Perfect for new micro-businesses looking to establish visual trust.
-              </p>
+          {PRICING_PLANS.map((plan) => (
+            <div
+              key={plan.id}
+              className={`bg-white border rounded-3xl p-8 flex flex-col justify-between text-left relative ${
+                plan.isRecommended
+                  ? "border-2 border-[#1b9cda] shadow-lg"
+                  : "border-border-subtle"
+              }`}
+            >
+              {plan.isRecommended && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#1b9cda] text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-sm">
+                  Recommended
+                </div>
+              )}
 
-              <div className="mb-6">
-                <span className="text-3xl font-black text-[#0a1a3b]">
-                  ₦{isYearlyBilling ? "1,200" : "1,500"}
+              <div>
+                <span
+                  className={`text-xs font-bold uppercase tracking-widest block mb-2 ${
+                    plan.isRecommended ? "text-[#1b9cda] mt-2" : "text-[#0a1a3b]/50"
+                  }`}
+                >
+                  {plan.badge}
                 </span>
-                <span className="text-xs font-mono text-[#0a1a3b]/60 uppercase ml-1 block">
-                  / month
-                </span>
+                <h3 className="text-xl font-extrabold text-[#0a1a3b]">
+                  {plan.name}
+                </h3>
+                <p className="text-xs text-[#0a1a3b]/60 mt-1 mb-6">
+                  {plan.description}
+                </p>
+
+                <div className="mb-6">
+                  <span className="text-3xl font-black text-[#0a1a3b]">
+                    ₦{isYearlyBilling ? plan.yearlyPrice : plan.monthlyPrice}
+                  </span>
+                  <span className="text-xs font-mono text-[#0a1a3b]/60 uppercase ml-1 block">
+                    / month
+                  </span>
+                </div>
+
+                <div className="h-[1px] bg-border-subtle mb-6" />
+
+                <ul className="space-y-3.5 mb-8">
+                  {plan.features.map((feature, idx) => (
+                    <li
+                      key={idx}
+                      className={`text-xs flex items-center gap-2 ${
+                        feature.highlight
+                          ? "font-extrabold text-[#1b9cda]"
+                          : feature.iconColor === "text-[#0a1a3b]"
+                            ? "font-bold text-[#0a1a3b]"
+                            : "font-semibold text-[#0a1a3b]/80"
+                      }`}
+                    >
+                      {feature.icon === "sparkles" ? (
+                        <Sparkles size={14} className="animate-pulse" />
+                      ) : (
+                        <CheckCircle2
+                          size={14}
+                          className={feature.iconColor || "text-[#10b981]"}
+                        />
+                      )}
+                      <span>{feature.text}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="h-[1px] bg-border-subtle mb-6" />
-
-              <ul className="space-y-3.5 mb-8">
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>trebo.site/yourname</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Up to 20 products</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Customer review logs</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>WhatsApp catalog order CTA</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Basic brand configuration</span>
-                </li>
-              </ul>
+              {plan.buttonHref ? (
+                <a
+                  href={plan.buttonHref}
+                  className="w-full text-center py-3.5 rounded-xl border border-border-subtle hover:bg-surface text-[#0a1a3b] font-bold text-xs uppercase tracking-wide transition-all"
+                >
+                  {plan.buttonText}
+                </a>
+              ) : (
+                <button
+                  onClick={() => handleAction(plan)}
+                  className={`w-full text-center py-3.5 rounded-xl font-bold text-xs uppercase tracking-wide transition-all ${
+                    plan.isRecommended
+                      ? "bg-[#1b9cda] hover:bg-[#158bb3] text-white shadow-sm shadow-[#1b9cda]/10"
+                      : "border border-border-subtle hover:bg-surface text-[#0a1a3b]"
+                  }`}
+                >
+                  {plan.buttonText}
+                </button>
+              )}
             </div>
-
-            <a
-              href="#customizer"
-              className="w-full text-center py-3.5 rounded-xl border border-border-subtle hover:bg-surface text-[#0a1a3b] font-bold text-xs uppercase tracking-wide transition-all"
-            >
-              Select Starter
-            </a>
-          </div>
-
-          {/* Plan 2 - Pro (Most Popular) */}
-          <div className="bg-white border-2 border-[#1b9cda] rounded-3xl p-8 flex flex-col justify-between text-left relative shadow-lg">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#1b9cda] text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-sm">
-              Recommended
-            </div>
-
-            <div>
-              <span className="text-xs font-bold text-[#1b9cda] uppercase tracking-widest block mb-2 mt-2">
-                Premium Bot Integration
-              </span>
-              <h3 className="text-xl font-extrabold text-[#0a1a3b]">Pro Plan</h3>
-              <p className="text-xs text-[#0a1a3b]/60 mt-1 mb-6">
-                Our most popular plan tailored for serious local store operators.
-              </p>
-
-              <div className="mb-6">
-                <span className="text-3xl font-black text-[#0a1a3b]">
-                  ₦{isYearlyBilling ? "2,000" : "2,500"}
-                </span>
-                <span className="text-xs font-mono text-[#0a1a3b]/60 uppercase ml-1 block">
-                  / month
-                </span>
-              </div>
-
-              <div className="h-[1px] bg-border-subtle mb-6" />
-
-              <ul className="space-y-3.5 mb-8">
-                <li className="text-xs font-extrabold flex items-center gap-2 text-[#1b9cda]">
-                  <Sparkles size={14} className="animate-pulse" />
-                  <span>Includes AI WhatsApp Assistant</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Everything in Starter plan</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>store.trebo.com subdomain redirection</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Up to 300 products in directory</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Trebo merchant directory listing</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Auto-follow up message bot</span>
-                </li>
-              </ul>
-            </div>
-
-            <button
-              onClick={() => {
-                const targetElement = document.getElementById("customizer");
-                if (targetElement) {
-                  targetElement.scrollIntoView({ behavior: "smooth" });
-                  setActiveWorkspaceTab("dashboard");
-                }
-              }}
-              className="w-full text-center py-3.5 rounded-xl bg-[#1b9cda] hover:bg-[#158bb3] text-white font-bold text-xs uppercase tracking-wide transition-all shadow-sm shadow-[#1b9cda]/10"
-            >
-              Launch Pro Page
-            </button>
-          </div>
-
-          {/* Plan 3 - Premium */}
-          <div className="bg-white border border-border-subtle rounded-3xl p-8 flex flex-col justify-between text-left">
-            <div>
-              <span className="text-xs font-bold text-[#0a1a3b]/50 uppercase tracking-widest block mb-2">
-                Complete Branding Identity
-              </span>
-              <h3 className="text-xl font-extrabold text-[#0a1a3b]">Premium</h3>
-              <p className="text-xs text-[#0a1a3b]/60 mt-1 mb-6">
-                For established local outlets seeking payment capabilities and domains.
-              </p>
-
-              <div className="mb-6">
-                <span className="text-3xl font-black text-[#0a1a3b]">
-                  ₦{isYearlyBilling ? "4,000" : "5,000"}
-                </span>
-                <span className="text-xs font-mono text-[#0a1a3b]/60 uppercase ml-1 block">
-                  / month
-                </span>
-              </div>
-
-              <div className="h-[1px] bg-border-subtle mb-6" />
-
-              <ul className="space-y-3.5 mb-8">
-                <li className="text-xs font-bold text-[#0a1a3b] flex items-center gap-2">
-                  <CheckCircle2 size={14} className="text-[#0a1a3b]" />
-                  <span>Verification Badge displayed</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Everything in Pro plan</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Direct online payment integration</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Free custom .com.ng domain</span>
-                </li>
-                <li className="text-xs font-semibold flex items-center gap-2 text-[#0a1a3b]/80">
-                  <CheckCircle2 size={14} className="text-[#10b981]" />
-                  <span>Advanced meta store analytics dashboard</span>
-                </li>
-              </ul>
-            </div>
-
-            <a
-              href="#customizer"
-              className="w-full text-center py-3.5 rounded-xl border border-border-subtle hover:bg-surface text-[#0a1a3b] font-bold text-xs uppercase tracking-wide transition-all"
-            >
-              Select Premium
-            </a>
-          </div>
+          ))}
         </div>
 
         <div className="mt-12 text-center">
@@ -236,7 +257,9 @@ export const Pricing: React.FC<PricingProps> = ({
               href="#contact"
               onClick={(e) => {
                 e.preventDefault();
-                alert("Thanks for your interest! Standard support is available on WhatsApp or via mail: contact@gettrebo.com");
+                alert(
+                  "Thanks for your interest! Standard support is available on WhatsApp or via mail: contact@gettrebo.com",
+                );
               }}
               className="text-[#1b9cda] hover:underline"
             >
