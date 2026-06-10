@@ -1,0 +1,421 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 | System Meltdown</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0A0F;
+            --violet: #7B2FFF;
+            --cyan: #00F5FF;
+            --coral: #FF4D6D;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #fff;
+            font-family: var(--font-display);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* CRT Scanline */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 100;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Gooey Filter for Melting */
+        .goo-filter {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        /* Container */
+        main {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        /* Melting 500 */
+        .hero-code {
+            font-size: 25vw;
+            font-weight: 700;
+            line-height: 0.8;
+            color: var(--coral);
+            filter: url(#gooey);
+            position: relative;
+            margin-bottom: 2rem;
+            animation: pulse-melt 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-melt {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.05); }
+        }
+
+        .melt-drip {
+            position: absolute;
+            top: 80%;
+            width: 20px;
+            height: 0;
+            background: var(--coral);
+            border-radius: 10px;
+            animation: drip 3s infinite;
+        }
+
+        @keyframes drip {
+            0% { height: 0; top: 80%; opacity: 1; }
+            50% { height: 100px; top: 80%; opacity: 1; }
+            100% { height: 0; top: 150%; opacity: 0; }
+        }
+
+        /* Flames */
+        .fire-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .spark {
+            position: absolute;
+            background: var(--coral);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: explode 2s infinite;
+        }
+
+        @keyframes explode {
+            0% { transform: translate(0,0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .scramble {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--violet);
+            margin-bottom: 3rem;
+        }
+
+        /* Terminal Card */
+        .terminal {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: left;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot-red { background: #FF5F56; }
+        .dot-amber { background: #FFBD2E; }
+        .dot-green { background: #27C93F; }
+
+        .log-line {
+            color: #A0A0A0;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .log-line::before { content: "[SYS] "; color: var(--cyan); }
+        .log-err::before { content: "[ERR] "; color: var(--coral); }
+
+        /* Button */
+        .btn {
+            background: transparent;
+            color: #fff;
+            padding: 1.2rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border: 2px solid #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: var(--bg);
+            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+        }
+
+        .btn-loading .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid currentColor;
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Trebo branding */
+        .trebo-logo {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #fff;
+            z-index: 200;
+        }
+
+        .logo-box {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg);
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-code { font-size: 35vw; }
+            h1 { font-size: 1.8rem; }
+            .terminal { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <svg class="goo-filter">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
+
+    <a href="/" class="trebo-logo">
+        <div class="logo-box">t</div>
+        <span style="font-weight: 800; letter-spacing: -0.5px;">trebo</span>
+    </a>
+
+    <main>
+        <div class="fire-container" id="fire"></div>
+
+        <div class="hero-code" id="code-500">
+            500
+            <div class="melt-drip" style="left: 20%;"></div>
+            <div class="melt-drip" style="left: 50%; animation-delay: 1s;"></div>
+            <div class="melt-drip" style="left: 80%; animation-delay: 2s;"></div>
+        </div>
+        
+        <h1 id="scramble-headline">Something exploded.</h1>
+        <p class="scramble" id="scramble-text"></p>
+
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-amber"></div>
+                <div class="dot dot-green"></div>
+            </div>
+            <div id="logs">
+                <span class="log-line">Initializing emergency recovery...</span>
+                <span class="log-line log-err">Checkout engine: OVERHEAT_CRITICAL</span>
+                <span class="log-line">Dumping core to /dev/null</span>
+                <span class="log-line log-err">Fatal: Catalog synchronization deadlock</span>
+            </div>
+        </div>
+
+        <button class="btn" id="retry-btn">
+            <span class="btn-content">Try to Fix It</span>
+        </button>
+    </main>
+
+    <script>
+        // Fire Sparks
+        const fire = document.getElementById('fire');
+        for(let i = 0; i < 40; i++) {
+            const s = document.createElement('div');
+            s.className = 'spark';
+            s.style.left = '50%';
+            s.style.top = '50%';
+            const tx = (Math.random() - 0.5) * 400;
+            const ty = (Math.random() - 0.5) * 400;
+            s.style.setProperty('--tx', `${tx}px`);
+            s.style.setProperty('--ty', `${ty}px`);
+            s.style.animationDelay = `${Math.random() * 2}s`;
+            fire.appendChild(s);
+        }
+
+        // Text Scramble
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.update = this.update.bind(this);
+            }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+            update() {
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.randomChar();
+                            this.queue[i].char = char;
+                        }
+                        output += `<span style="color:var(--cyan)">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
+            }
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+        }
+
+        const phrases = [
+            'We know, we know. The servers are crying.',
+            'Our engineers are already on the way with fire extinguishers.',
+            'Trebo engine has reached 5000°C. Cooling down.',
+            'Wait, did someone trip over the power cable?'
+        ];
+
+        const el = document.getElementById('scramble-text');
+        const fx = new TextScramble(el);
+        let counter = 0;
+        const next = () => {
+            fx.setText(phrases[counter]).then(() => {
+                setTimeout(next, 3000);
+            });
+            counter = (counter + 1) % phrases.length;
+        };
+        next();
+
+        // Retry Button
+        const btn = document.getElementById('retry-btn');
+        const btnContent = btn.querySelector('.btn-content');
+        btn.addEventListener('click', () => {
+            btn.classList.add('btn-loading');
+            btnContent.innerHTML = '<span class="spinner"></span>Attempting Reboot...';
+            
+            setTimeout(() => {
+                document.body.style.animation = 'shake 0.3s';
+                btnContent.innerText = "Still broken. We know.";
+                btn.style.borderColor = "var(--coral)";
+                btn.style.color = "var(--coral)";
+                btn.classList.remove('btn-loading');
+                
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 300);
+            }, 2000);
+        });
+
+        // Shake effect
+        const style = document.createElement('style');
+        style.innerHTML = `@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }`;
+        document.head.appendChild(style);
+
+        // Dynamic Logs
+        const logLines = [
+            "Attempting to patch memory leak...",
+            "Checking database shards... [OK]",
+            "Re-routing traffic through Lagos gateway...",
+            "Critical: Thermal throttling active.",
+            "Retrying checkout handshake...",
+            "Warning: API latency exceeding 5000ms."
+        ];
+        const logContainer = document.getElementById('logs');
+        setInterval(() => {
+            const line = document.createElement('span');
+            line.className = 'log-line';
+            line.innerText = logLines[Math.floor(Math.random() * logLines.length)];
+            logContainer.appendChild(line);
+            if(logContainer.children.length > 6) logContainer.removeChild(logContainer.children[0]);
+        }, 4000);
+    </script>
+</body>
+</html>

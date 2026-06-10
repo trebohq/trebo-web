@@ -20,61 +20,63 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-6 h-18 md:h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <Image
-            src="/trebo-icon-sm.png"
-            width={30}
-            height={30}
-            alt="trebo logo"
-          />
-          <span className="font-extrabold text-xl tracking-tight text-[#0a1a3b] select-none">
+          <div className="relative w-8 h-8 overflow-hidden rounded-lg subtle-border bg-[#0a1a3b] flex items-center justify-center text-white font-black text-lg transition-transform group-hover:scale-105 active:scale-95">
+            <Image
+              src="/trebo-icon-sm.png"
+              fill
+              className="object-cover"
+              alt="trebo logo"
+            />
+          </div>
+          <span className="font-extrabold text-xl tracking-tighter text-[#0a1a3b] select-none">
             trebo
           </span>
         </Link>
 
         {/* Desktop Links */}
         <nav className="hidden md:flex items-center gap-8">
-          <a
-            href="#how-it-works"
+          <Link
+            href="/#how-it-works"
             className="text-sm font-medium text-[#0a1a3b]/85 hover:text-[#1b9cda] transition-colors"
           >
             How it works
-          </a>
-          <a
-            href="#benefits"
+          </Link>
+          <Link
+            href="/#benefits"
             className="text-sm font-medium text-[#0a1a3b]/85 hover:text-[#1b9cda] transition-colors"
           >
             Benefits
-          </a>
-          <a
-            href="#pricing"
+          </Link>
+          <Link
+            href="/#pricing"
             className="text-sm font-medium text-[#0a1a3b]/85 hover:text-[#1b9cda] transition-colors"
           >
             Pricing
-          </a>
-          <a
-            href="#faq"
+          </Link>
+          <Link
+            href="/#faq"
             className="text-sm font-medium text-[#0a1a3b]/85 hover:text-[#1b9cda] transition-colors"
           >
             FAQ
-          </a>
-          <a
-            href="#customizer"
+          </Link>
+          <Link
+            href="/#customizer"
             className="text-xs tracking-wide uppercase px-3 py-1 bg-surface hover:bg-border-subtle text-[#0a1a3b] font-medium rounded-full transition-all subtle-border"
           >
             Interactive Playground
-          </a>
+          </Link>
         </nav>
 
         {/* Action buttons */}
         <div className="hidden md:flex items-center gap-4">
           <Link
-            href="#customizer"
+            href="/#customizer"
             className="px-5 py-2.5 rounded-full bg-[#0a1a3b] hover:bg-[#1b9cda] text-background font-semibold text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#1b9cda]"
           >
             Login
           </Link>
           <Link
-            href="/auth/signup"
+            href="/#customizer"
             className="px-6 py-2.5 rounded-full bg-[#0a1a3b] hover:bg-[#1b9cda] text-[#f3efe9] font-semibold text-sm transition-all shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#1b9cda]"
           >
             Create account
@@ -102,44 +104,44 @@ export const Header: React.FC<HeaderProps> = ({
             className="md:hidden border-b border-border-subtle bg-background overflow-hidden"
           >
             <div className="px-6 py-6 flex flex-col gap-4">
-              <a
-                href="#how-it-works"
+              <Link
+                href="/#how-it-works"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-base font-medium text-[#0a1a3b] py-1"
               >
                 How it works
-              </a>
-              <a
-                href="#benefits"
+              </Link>
+              <Link
+                href="/#benefits"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-base font-medium text-[#0a1a3b] py-1"
               >
                 Benefits
-              </a>
-              <a
-                href="#pricing"
+              </Link>
+              <Link
+                href="/#pricing"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-base font-medium text-[#0a1a3b] py-1"
               >
                 Pricing
-              </a>
-              <a
-                href="#faq"
+              </Link>
+              <Link
+                href="/#faq"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-base font-medium text-[#0a1a3b] py-1"
               >
                 FAQ
-              </a>
+              </Link>
               <div className="h-[1px] bg-border-subtle my-2" />
               <Link
-                href="#customizer"
+                href="/#customizer"
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-4 py-3 rounded-xl bg-surface text-[#0a1a3b] text-center font-semibold text-sm mb-2"
               >
                 Login
               </Link>
               <Link
-                href="/auth/signup"
+                href="/#customizer"
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-4 py-3 rounded-xl bg-[#0a1a3b] text-background text-center font-semibold text-sm"
               >

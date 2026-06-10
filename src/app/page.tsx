@@ -63,6 +63,13 @@ export default function App() {
   // Simulated WhatsApp checkout or inquiry state
   const [selectedProductForInquiry, setSelectedProductForInquiry] = useState<Product | null>(null);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
+  const aiTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (aiTimeoutRef.current) clearTimeout(aiTimeoutRef.current);
+    };
+  }, []);
 
   // Dynamic products filtered by the active customized category
   const activeProducts = useMemo(() => {
@@ -126,7 +133,7 @@ export default function App() {
     setAiChat(prev => [...prev, userMsg]);
 
     // Simulate typing delay
-    setTimeout(() => {
+    aiTimeoutRef.current = setTimeout(() => {
       let aiResponseText = "";
       if (command.toLowerCase().includes("ghost") || command.toLowerCase().includes("follow up")) {
         aiResponseText = "Follow-up activated: I followed up with 5 ghost buyers today. 2 of them are ready to pay! Draft sent: 'Hi! Quick check on the Ankara Gown order. Would you like us to secure it for dispatch tomorrow?'";

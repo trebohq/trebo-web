@@ -11,10 +11,11 @@ const ROTATING_WORDS = ["a Store.", "a Website.", "Trebo.", "Growth.", "an Edge.
 function RotatingWord() {
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<"in" | "out">("in");
+  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const next = useCallback(() => {
     setPhase("out");
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setIndex((prev) => (prev + 1) % ROTATING_WORDS.length);
       setPhase("in");
     }, 350);
@@ -22,7 +23,10 @@ function RotatingWord() {
 
   useEffect(() => {
     const timer = setInterval(next, 2800);
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, [next]);
 
   return (
@@ -172,9 +176,10 @@ export const Hero: React.FC<HeroProps> = ({
                           className="bg-white border border-border-subtle rounded-lg p-1.5 flex flex-col justify-between group hover:border-[#1b9cda] transition-all"
                         >
                           <div className="aspect-square bg-surface rounded-md overflow-hidden mb-1 relative">
-                            <img
+                            <Image
                               src={item.image}
                               alt={item.name}
+                              fill
                               className="object-cover"
                             />
                           </div>

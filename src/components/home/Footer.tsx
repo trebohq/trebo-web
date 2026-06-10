@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 export const Footer: React.FC = () => {
   return (
@@ -9,14 +10,14 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-12">
           {/* Left Col: brand focus */}
           <div className="md:col-span-5 text-left">
-            <a href="#" className="flex items-center gap-2 group mb-4">
+            <Link href="/" className="flex items-center gap-2 group mb-4">
               <span className="w-7 h-7 rounded-md bg-[#0a1a3b] text-white flex items-center justify-center font-bold text-sm">
                 t
               </span>
               <span className="font-extrabold text-lg tracking-tight text-[#0a1a3b]">
                 trebo
               </span>
-            </a>
+            </Link>
             <p className="text-xs text-[#0a1a3b]/70 leading-relaxed mb-6 max-w-[40ch]">
               Every business deserves to be seen, trusted and chosen. Helping Nigerian entrepreneurs grow since 2024.
             </p>
@@ -35,14 +36,14 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-xs font-semibold text-[#0a1a3b]">
               <li>
-                <a href="#how-it-works" className="hover:text-[#1b9cda] transition-colors">
+                <Link href="/#how-it-works" className="hover:text-[#1b9cda] transition-colors">
                   How it works
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#pricing" className="hover:text-[#1b9cda] transition-colors">
+                <Link href="/#pricing" className="hover:text-[#1b9cda] transition-colors">
                   Pricing
-                </a>
+                </Link>
               </li>
               <li>
                 <a
@@ -81,40 +82,36 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2.5 text-xs font-semibold text-[#0a1a3b]">
               <li>
-                <a
-                  href="#privacy"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert("Privacy Policy: Your WhatsApp configurations and catalog logs remain fully encrypted. Trebo does not monitor customer identities.");
-                  }}
+                <Link
+                  href="/privacy"
                   className="hover:text-[#1b9cda] transition-colors"
                 >
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#terms"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert("Terms of Service: Merchants utilizing Trebo must obey all regional commerce bylaws in Nigeria.");
-                  }}
+                <Link
+                  href="/terms"
                   className="hover:text-[#1b9cda] transition-colors"
                 >
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#merchant"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert("Merchant Policy: Fast, secure product dispatch and direct WhatsApp clear chat standards. Zero toleration for ghost seller actions.");
-                  }}
+                <Link
+                  href="/cookies"
+                  className="hover:text-[#1b9cda] transition-colors"
+                >
+                  Cookie Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/merchant"
                   className="hover:text-[#1b9cda] transition-colors"
                 >
                   Merchant Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { PhoneMockup } from "../ui/PhoneMockup";
 import { 
   TrendingUp, 
@@ -718,10 +719,11 @@ export const InteractivePlayground: React.FC<InteractivePlaygroundProps> = ({
                           style={{ borderColor: brandColor + "20" }}
                           className="bg-white rounded-lg p-2 flex flex-col justify-between border hover:scale-[1.02] transition-all relative"
                         >
-                          <div className="aspect-square bg-surface rounded overflow-hidden mb-1 relative">
-                            <img
+                          <div className="aspect-square bg-surface rounded-md overflow-hidden mb-1 relative">
+                            <Image
                               src={p.image}
                               alt={p.name}
+                              fill
                               className="object-cover"
                             />
                           </div>

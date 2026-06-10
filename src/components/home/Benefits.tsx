@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sparkles, AlertCircle, CheckCircle2, Bot, ArrowRight } from "lucide-react";
+import { AlertCircle, CheckCircle2, Bot, ArrowRight } from "lucide-react";
 import { PhoneMockup } from "../ui/PhoneMockup";
 
 interface BenefitsProps {
@@ -205,7 +205,7 @@ export const Benefits: React.FC<BenefitsProps> = ({
                     {/* User message */}
                     <div className="flex flex-col items-end max-w-[85%] ml-auto space-y-1">
                       <div className="bg-[#d9fdd3] text-[#0a1a3b] px-3.5 py-2.5 rounded-2xl rounded-tr-none text-xs font-medium leading-relaxed shadow-sm text-left">
-                        Follow up with yesterday's ghost buyers
+                        Follow up with yesterday&apos;s ghost buyers
                       </div>
                       <div className="flex items-center gap-1 text-[9px] text-slate-500">
                         <span>10:14 AM</span>
