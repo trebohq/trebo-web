@@ -12,20 +12,28 @@ interface FAQProps {
 
 const faqs = [
   {
-    q: "Do I need a separate website or domain?",
-    a: "No. Trebo gives you a professional link (e.g., gettrebo.com/yourbusiness) that you can use immediately. If you want a custom domain later, our Premium package supports custom .com.ng redirection flawlessly."
+    q: "Do I need technical skills to use Trebo?",
+    a: "Not at all. If you can use WhatsApp you can use Trebo. Setup takes less than 10 minutes."
   },
   {
-    q: "How do customers pay?",
-    a: "Trebo handles the order discovery and inquiry. When a customer clicks buy, it opens a WhatsApp chat with all the order details. You can then use your preferred payment method (Bank Transfer, Moniepoint, etc.) to complete the sale."
+    q: "What happens after my free trial ends?",
+    a: "Your store stays visible to customers but you won't be able to edit or add products until you subscribe to a plan."
   },
   {
-    q: "How many products can I upload?",
-    a: "The Starter plan allows up to 20 products. Our Pro plan supports up to 300 products, and the Premium plan supports unlimited catalog listings."
+    q: "Can customers buy directly on my Trebo page?",
+    a: "Customers browse your products and reach you directly on WhatsApp to complete the purchase. Online payments are available on our Premium plan."
   },
   {
-    q: "Can I use it for professional services?",
-    a: "Absolutely. Many salons, consultants, and artisans use Trebo to showcase their services and receive booking inquiries via WhatsApp."
+    q: "What is the difference between trebo.site/storename and storename.trebo.com?",
+    a: "Free and Starter plans get trebo.site/storename. Pro and Premium plans get their own subdomain at storename.trebo.com which looks more professional and builds more trust."
+  },
+  {
+    q: "Is my store visible on Google?",
+    a: "SEO optimization is available on our Premium plan. This means your store can show up when people search for your products or services on Google."
+  },
+  {
+    q: "Can I use my own domain?",
+    a: "Premium users get a free .com.ng domain included. Custom domain connection is on our roadmap."
   }
 ];
 
@@ -43,7 +51,7 @@ export const FAQ: React.FC<FAQProps> = ({ activeFaq, toggleFaq, executeAiCommand
               Common Questions
             </h2>
             <p className="text-base text-[#0a1a3b]/70 mb-8 leading-relaxed max-w-[40ch]">
-              Everything you need to know about setting up payment redirects, domain configurations, and AI assistants.
+              Everything you need to know about setting up your store, managing payments, and choosing the right plan for your business.
             </p>
 
             <div className="p-5 border border-border-subtle rounded-2xl bg-white/70 max-w-[340px]">
